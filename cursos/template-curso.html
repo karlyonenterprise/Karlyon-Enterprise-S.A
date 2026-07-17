@@ -40,6 +40,7 @@
   img{max-width:100%;display:block;}
   svg{display:block;}
 
+  /* ===== Header ===== */
   header.site{
     background:var(--cream);
     display:flex;
@@ -91,6 +92,7 @@
   body.menu-open .hamburger span:nth-child(2){opacity:0;}
   body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
 
+  /* ===== Nav menu ===== */
   .nav-menu{
     position:fixed;
     top:0;left:0;right:0;
@@ -133,6 +135,7 @@
     box-shadow:0 8px 24px rgba(10,21,38,0.15);
   }
 
+  /* ===== Hero Image ===== */
   .hero-image{
     width:100%;
     max-height:300px;
@@ -146,6 +149,7 @@
     object-fit:cover;
   }
 
+  /* ===== Video Frame ===== */
   .video-container{
     width:100%;
     aspect-ratio:16/9;
@@ -164,6 +168,7 @@
     border:none;
   }
 
+  /* ===== Course Info ===== */
   .course-header{
     margin-bottom:20px;
   }
@@ -219,6 +224,7 @@
     font-weight:600;
   }
 
+  /* ===== Content ===== */
   .course-content{
     color:var(--muted);
     line-height:1.7;
@@ -247,6 +253,7 @@
     color:var(--gold-300);
   }
 
+  /* ===== CTA Button ===== */
   .btn-inscrever{
     display:block;
     padding:16px 24px;
@@ -267,6 +274,7 @@
     box-shadow:0 8px 24px rgba(221,165,74,0.3);
   }
 
+  /* ===== Back Button ===== */
   .btn-voltar{
     display:inline-flex;
     align-items:center;
@@ -286,6 +294,7 @@
     width:16px;height:16px;
   }
 
+  /* ===== Footer ===== */
   footer.site{
     background:var(--navy-900);
     color:#fff;
@@ -433,6 +442,7 @@
   // Extrair ID do curso da URL
   function extrairIdCurso() {
     const pathname = window.location.pathname;
+    // Formato esperado: /cursos/plano-negocio-pratico.html
     const match = pathname.match(/\/([^\/]+)\.html$/);
     return match ? match[1] : null;
   }
@@ -456,7 +466,7 @@
     // Atualizar meta tags
     document.title = `${curso.titulo} — Karlyon Enterprise S.A.`;
     document.getElementById('metaDesc').setAttribute('content', curso.metaDescricao);
-    document.getElementById('metaKeywords').setAttribute('content', `${curso.titulo}, ${curso.categoria}, cursos moçambique`);
+    document.getElementById('metaKeywords').setAttribute('content', `${curso.titulo}, ${curso.categoria}, cursos moçambique, formação profissional`);
     document.getElementById('canonicalUrl').setAttribute('href', `https://karlyon.co.mz/cursos/${curso.id}.html`);
 
     // Renderizar conteúdo do curso
@@ -531,6 +541,7 @@
   function inscreverCurso(nomeCurso) {
     if (gerenciador.usuarioLogado) {
       alert(`Ótimo, ${gerenciador.usuarioLogado.nome}! Inscrição registada para ${nomeCurso}.\n\nEntraremos em contacto em breve.`);
+      // Aqui poderia registar a inscrição em um backend
     } else {
       alert(`Por favor, faça login primeiro para se inscrever em ${nomeCurso}.`);
       window.location.href = '../academia.html';
