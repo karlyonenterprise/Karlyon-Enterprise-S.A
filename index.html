@@ -8,30 +8,24 @@
 <link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy-900:#0a1220;
     --navy-800:#13294f;
-    --gold-500:#c81e2c;
+    --gold-500:#c6870f;
     --green-600:#1f7a4d;
     --blue-600:#2f6fed;
-    --gold-400:#e63946;
-    --gold-300:#f4a6ab;
-    --orange-600:#2f6fed;
+    --gold-400:#dba234;
+    --gold-300:#f1d9a6;
+    --orange-600:#b5760a;
     --cream:#f7f9fc;
     --ink:#0a1220;
-    --muted:#a9b4c7;
-    --line:rgba(255,255,255,0.14);
+    --muted:#5b6472;
+    --line:rgba(10,18,32,0.10);
     --radius-lg:18px;
     --radius-md:12px;
   }
-  .brand-stripe{display:flex;width:100%;height:4px;}
-  .brand-stripe span{flex:1 1 0;}
-  .brand-stripe span:nth-child(1){background:var(--blue-600);}
-  .brand-stripe span:nth-child(2){background:var(--gold-500);}
-  .brand-stripe span:nth-child(3){background:var(--green-600);}
-  .brand-stripe span:nth-child(4){background:var(--navy-900);}
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -43,852 +37,519 @@
   a{text-decoration:none;color:inherit;}
   img{max-width:100%;display:block;}
   svg{display:block;}
+  .eyebrow{
+    font-size:0.72rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--gold-500);margin:0 0 10px;
+  }
+  h1,h2,h3{font-family:'Inter', system-ui, sans-serif;}
 
-  /* ===== Header ===== */
-  header.site{
-    background:var(--cream);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:14px 14px;
-    border-bottom:1px solid #ecdfc0;
-    gap:10px;
-    position:relative;
-    z-index:105;
+  /* ===== Brand stripe (signature) ===== */
+  .brand-stripe{display:none;width:100%;height:4px;}
+  .brand-stripe span{flex:1 1 0;}
+  .brand-stripe span:nth-child(1){background:var(--gold-500);}
+  .brand-stripe span:nth-child(2){background:var(--gold-500);}
+  .brand-stripe span:nth-child(3){background:var(--green-600);}
+  .brand-stripe span:nth-child(4){background:var(--navy-900);}
+
+  /* ===== Header / desktop nav ===== */
+  header.navbar{
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:105;
+  }
+  .navbar-inner{
+    max-width:1200px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
   }
   .brand{display:flex;align-items:center;gap:10px;min-width:0;}
-  .brand .crest{
-    width:46px;height:46px;flex:0 0 auto;
-    display:flex;align-items:center;justify-content:center;
+  .brand .crest{width:42px;height:42px;flex:0 0 auto;}
+  .brand .crest img{width:100%;height:100%;object-fit:contain;}
+  .brand .name-block h1{margin:0;font-size:1.05rem;letter-spacing:0.2px;color:var(--navy-900);font-weight:800;line-height:1.15;white-space:nowrap;}
+  .brand .name-block p{margin:2px 0 0;font-size:0.55rem;letter-spacing:1.4px;color:var(--gold-500);font-weight:700;white-space:nowrap;}
+  .desktop-nav{display:none;align-items:center;gap:30px;}
+  .desktop-nav a{font-size:0.92rem;font-weight:600;color:var(--navy-900);padding:6px 2px;border-bottom:2px solid transparent;}
+  .desktop-nav a.active{color:var(--gold-500);border-bottom-color:var(--gold-500);}
+  .desktop-nav a:hover{color:var(--gold-500);}
+  .navbar-cta{display:none;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:10px;font-weight:700;font-size:0.92rem;
+    border:none;cursor:pointer;white-space:nowrap;
   }
-  .brand .crest img{
-    width:100%;height:100%;object-fit:contain;
-  }
-  .brand .name-block h1{
-    margin:0;
-    font-family:'Playfair Display', Georgia, serif;
-    font-size:0.98rem;
-    letter-spacing:0.2px;
-    color:var(--navy-900);
-    font-weight:800;
-    line-height:1.15;
-    white-space:nowrap;
-  }
-  .brand .name-block p{
-    margin:3px 0 0;
-    font-size:0.52rem;
-    letter-spacing:1.2px;
-    color:var(--orange-600);
-    font-weight:700;
-    white-space:nowrap;
-  }
+  .btn-primary{background:var(--gold-500);color:#fff;}
+  .btn-primary:hover{background:#a66f0c;}
+  .btn-outline{background:transparent;color:var(--navy-900);border:1.5px solid var(--line);}
+  .btn-outline:hover{border-color:var(--navy-900);}
+  .btn svg{width:16px;height:16px;}
+
   .hamburger{
-    width:40px;height:40px;
-    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
-    background:transparent;border:none;cursor:pointer;flex:0 0 auto;
-    position:relative;z-index:110;
+    width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    background:transparent;border:none;cursor:pointer;flex:0 0 auto;position:relative;z-index:110;
   }
-  .hamburger span{
-    width:24px;height:2.5px;background:var(--navy-900);border-radius:2px;
-    transition:transform .25s ease, opacity .2s ease;
-  }
+  .hamburger span{width:24px;height:2.5px;background:var(--navy-900);border-radius:2px;transition:transform .25s ease, opacity .2s ease;}
   body.menu-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
   body.menu-open .hamburger span:nth-child(2){opacity:0;}
   body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
 
-  /* ===== Nav menu (hamburger dropdown) ===== */
   .nav-menu{
-    position:fixed;
-    top:0;left:0;right:0;
-    background:var(--navy-900);
-    padding-top:78px;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .3s ease;
-    z-index:100;
+    position:fixed;top:0;left:0;right:0;background:var(--navy-900);padding-top:78px;
+    max-height:0;overflow:hidden;transition:max-height .3s ease;z-index:100;
   }
   body.menu-open .nav-menu{max-height:600px;}
   .nav-menu ul{list-style:none;margin:0;padding:8px 20px 24px;}
-  .nav-menu li{border-bottom:1px solid var(--line);}
-  .nav-menu a{
-    display:block;
-    padding:14px 4px;
-    color:#fff;
-    font-weight:600;
-    font-size:0.98rem;
-    font-family:'Playfair Display', Georgia, serif;
-  }
+  .nav-menu li{border-bottom:1px solid rgba(255,255,255,0.12);}
+  .nav-menu a{display:block;padding:14px 4px;color:#fff;font-weight:600;font-size:0.98rem;font-family:'Inter', system-ui, sans-serif;}
   .nav-menu a:hover{color:var(--gold-400);}
-  .nav-backdrop{
-    position:fixed;inset:0;
-    background:rgba(10,21,38,0.4);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .25s ease;
-    z-index:90;
-  }
+  .nav-backdrop{position:fixed;inset:0;background:rgba(10,18,32,0.5);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:90;}
   body.menu-open .nav-backdrop{opacity:1;pointer-events:auto;}
 
-  main{max-width:640px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px;}
+  main{max-width:1200px;margin:0 auto;padding:0 24px;}
 
-  .card{
-    background:var(--navy-900);
-    border:1px solid var(--line);
-    border-radius:var(--radius-lg);
-    padding:22px 20px;
-    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+  /* ===== Hero ===== */
+  .hero{padding:44px 0 56px;display:grid;grid-template-columns:1fr;gap:36px;align-items:center;}
+  .hero h2{margin:0 0 14px;font-size:2rem;line-height:1.18;font-weight:800;color:var(--navy-900);}
+  .hero h2 .accent{color:var(--gold-500);}
+  .hero p.desc{margin:0 0 24px;color:var(--muted);line-height:1.7;font-size:1rem;max-width:52ch;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;}
+  .hero-media{position:relative;}
+  .hero-media .frame{
+    border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(10,18,32,0.16);
+    aspect-ratio:4/3;
   }
+  .hero-media .frame img{width:100%;height:100%;object-fit:cover;}
+  .hero-media .dots{
+    position:absolute;width:80px;height:80px;
+    background-image:radial-gradient(var(--gold-500) 1.6px, transparent 1.6px);
+    background-size:10px 10px;opacity:0.35;z-index:-1;
+  }
+  .hero-media .dots.tl{top:-18px;left:-18px;}
+  .hero-media .dots.br{bottom:-18px;right:-18px;background-image:radial-gradient(var(--gold-500) 1.6px, transparent 1.6px);}
 
-  /* ===== Hero (full-bleed band, not a card) ===== */
-  .hero-band{
-    background:var(--navy-900);
-    width:100%;
-  }
-  .hero-band .hero-inner{
-    max-width:640px;
-    margin:0 auto;
-    padding:26px 20px 28px;
-  }
-  .hero-band h2{
-    margin:0 0 4px;
-    font-family:'Playfair Display', Georgia, serif;
-    font-size:1.5rem;
-    color:#fff;
-    font-weight:800;
-    line-height:1.2;
-  }
-  .hero-band h2 .accent{color:var(--gold-400);}
-  .hero-band .tagline{
-    margin:0 0 14px;
-    color:var(--gold-300);
-    font-style:italic;
-    font-size:0.95rem;
-    font-family:'Playfair Display', Georgia, serif;
-  }
-  .hero-band p.desc{
-    margin:0 0 18px;
-    color:var(--muted);
-    line-height:1.6;
-    font-size:0.92rem;
-    text-align:justify;
-  }
-  .hero-band p.desc b{color:var(--gold-400);font-weight:700;}
+  /* ===== Areas section ===== */
+  .section{padding:50px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 34px;}
+  .section-head h3{margin:6px 0 10px;font-size:1.7rem;color:var(--navy-900);font-weight:800;}
+  .section-head p{margin:0;color:var(--muted);line-height:1.6;font-size:0.96rem;}
+  .section-head .eyebrow{text-align:center;}
 
-  .icon-row{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    row-gap:20px;
-    column-gap:6px;
-    text-align:center;
-    padding-top:16px;
-    border-top:1px solid var(--line);
+  .areas-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+  .area-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:24px 20px;transition:transform .2s ease, box-shadow .2s ease;
   }
-  .icon-row .item{display:flex;flex-direction:column;align-items:center;gap:9px;}
-  .icon-row .glyph{
-    width:34px;height:34px;
-    color:var(--gold-400);
+  .area-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,18,32,0.1);}
+  .area-card .icon{
+    width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;margin-bottom:14px;
   }
-  .icon-row .divider{width:1px;height:100%;}
-  .icon-row .label{
-    font-size:0.66rem;
-    color:#e7ecf5;
-    font-weight:600;
-    letter-spacing:0.2px;
-  }
+  .area-card h4{margin:0 0 8px;font-size:1.05rem;color:var(--navy-900);font-weight:700;font-family:'Inter',sans-serif;}
+  .area-card p{margin:0 0 14px;color:var(--muted);font-size:0.88rem;line-height:1.55;}
+  .area-card .go{font-size:0.82rem;font-weight:700;color:var(--gold-500);display:inline-flex;align-items:center;gap:5px;}
+  .area-card .go svg{width:14px;height:14px;}
 
-  /* ===== Team photo ===== */
-  .team-card{padding:8px;}
-  .team-card img{
-    width:100%;
-    border-radius:calc(var(--radius-lg) - 6px);
-    display:block;
-    object-fit:cover;
-    aspect-ratio:16/10;
+  /* ===== Stats ===== */
+  .stats-bar{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:26px 20px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;
+    margin:0 0 10px;
   }
+  .stat{display:flex;align-items:center;gap:12px;}
+  .stat .num-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex:0 0 auto;}
+  .stat .num{font-size:1.25rem;font-weight:800;color:var(--navy-900);line-height:1.1;font-family:'Inter', system-ui, sans-serif;}
+  .stat .label{font-size:0.76rem;color:var(--muted);font-weight:600;}
 
-  /* ===== Course cards ===== */
-  .courses-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
+  /* ===== Courses ===== */
+  .courses-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:26px;}
+  .courses-grid{display:grid;grid-template-columns:1fr;gap:18px;}
   .course-card{
-    background:var(--navy-900);
-    border:1px solid var(--line);
-    border-radius:var(--radius-md);
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    box-shadow:0 6px 16px rgba(10,21,38,0.15);
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .2s ease, box-shadow .2s ease;
   }
-  .course-card .thumb-frame{
-    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
-    padding:4px;
+  .course-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,18,32,0.1);}
+  .course-card .thumb{aspect-ratio:16/10;overflow:hidden;}
+  .course-card .thumb img{width:100%;height:100%;object-fit:cover;}
+  .course-card .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .course-card h4{margin:0;font-size:0.98rem;color:var(--navy-900);font-weight:700;font-family:'Inter',sans-serif;line-height:1.35;}
+  .course-card .badge{
+    align-self:flex-start;font-size:0.68rem;font-weight:800;padding:4px 10px;border-radius:20px;
+    text-transform:uppercase;letter-spacing:0.4px;
   }
-  .course-card .thumb{
-    width:100%;
-    aspect-ratio:16/10;
-    object-fit:cover;
-    border-radius:calc(var(--radius-md) - 6px);
-    display:block;
-  }
-  .course-card .body{padding:10px 10px 12px;display:flex;flex-direction:column;gap:5px;flex:1;}
-  .course-card h3{
-    margin:0;
-    font-family:'Playfair Display', Georgia, serif;
-    font-size:0.8rem;
-    color:#fff;
-    font-weight:800;
-    line-height:1.22;
-  }
-  .course-card p{
-    margin:0;
-    color:var(--muted);
-    font-size:0.66rem;
-    line-height:1.4;
-    flex:1;
-    text-align:justify;
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-  }
-  .meta-row{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:8px;
-    font-size:0.6rem;
-    color:var(--gold-300);
-    margin:1px 0 3px;
-    font-weight:600;
-  }
-  .meta-row span{display:flex;align-items:center;gap:3px;}
-  .meta-row svg{width:11px;height:11px;flex:0 0 auto;}
-  .btn-ver{
-    align-self:flex-start;
-    background:linear-gradient(135deg, var(--orange-600), var(--gold-500));
-    color:var(--navy-900);
-    font-weight:800;
-    font-size:0.66rem;
-    padding:6px 12px;
-    border-radius:7px;
-    border:none;
-    cursor:pointer;
-    font-family:inherit;
-  }
+  .badge-iniciante{background:rgba(31,122,77,0.12);color:var(--green-600);}
+  .badge-intermedio{background:rgba(47,111,237,0.12);color:var(--blue-600);}
+  .course-card .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px;}
+  .course-card .price{font-weight:800;color:var(--navy-900);font-size:0.95rem;}
+  .course-card .go-circle{width:32px;height:32px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;}
+  .course-card .go-circle svg{width:15px;height:15px;color:var(--navy-900);}
 
-  /* ===== Artigos (carousel) ===== */
-  .articles-section{padding:2px 0 4px;}
-  .articles-section .section-head{
-    display:flex;align-items:baseline;justify-content:space-between;
-    margin:0 2px 12px;
+  /* ===== CTA banner ===== */
+  .cta-banner{
+    background:linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+    border-radius:var(--radius-lg);padding:32px 24px;
+    display:flex;flex-direction:column;gap:20px;align-items:flex-start;
   }
-  .articles-section .section-head h3{
-    margin:0;
-    font-family:'Playfair Display', Georgia, serif;
-    font-size:1.12rem;
-    font-weight:800;
-    color:var(--navy-900);
-  }
-  .articles-section .section-head span{
-    font-size:0.7rem;
-    color:#8a7a55;
-    font-weight:600;
-    letter-spacing:0.3px;
-  }
-  .articles-carousel{
-    overflow:hidden;
-    position:relative;
-    margin:0 -16px;
-    padding:2px 0 10px;
-    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
-    mask-image:linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
-  }
-  .articles-track{
-    display:flex;
-    gap:14px;
-    width:max-content;
-    padding-left:16px;
-    animation:articles-scroll 34s linear infinite;
-  }
-  .articles-carousel:hover .articles-track,
-  .articles-carousel:active .articles-track{
-    animation-play-state:paused;
-  }
-  @keyframes articles-scroll{
-    from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
-  }
-  .article-card{
-    flex:0 0 auto;
-    width:250px;
-    background:var(--navy-900);
-    border:1px solid var(--line);
-    border-radius:var(--radius-lg);
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    box-shadow:0 8px 24px rgba(10,21,38,0.15);
-  }
-  .article-card .thumb-frame{
-    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
-    padding:6px;
-  }
-  .article-card .thumb{
-    width:100%;
-    aspect-ratio:16/10;
-    object-fit:cover;
-    border-radius:calc(var(--radius-md) - 4px);
-    display:block;
-  }
-  .article-card .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
-  .article-card .tag{
-    align-self:flex-start;
-    font-size:0.64rem;
-    font-weight:700;
-    letter-spacing:0.4px;
-    text-transform:uppercase;
-    color:var(--navy-900);
-    background:linear-gradient(135deg, var(--gold-400), var(--gold-300));
-    padding:4px 10px;
-    border-radius:20px;
-  }
-  .article-card h4{
-    margin:0;
-    font-family:'Playfair Display', Georgia, serif;
-    font-size:0.98rem;
-    color:#fff;
-    font-weight:800;
-    line-height:1.28;
-  }
-  .article-card p{
-    margin:0;
-    color:var(--muted);
-    font-size:0.79rem;
-    line-height:1.5;
-    flex:1;
-    text-align:justify;
-  }
-  .article-card .read-row{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-top:2px;
-  }
-  .article-card .read-row .date{
-    font-size:0.68rem;
-    color:var(--gold-300);
-    font-weight:600;
-  }
-  .article-card .read-more{
-    display:flex;align-items:center;gap:5px;
-    font-size:0.75rem;
-    font-weight:800;
-    color:var(--gold-400);
-  }
-  .article-card .read-more svg{width:14px;height:14px;}
-  /* ===== Video section ===== */
-  .video-card h3{
-    margin:0 0 14px;
-    text-align:center;
-    color:var(--gold-400);
-    font-family:'Playfair Display', Georgia, serif;
-    font-size:1.12rem;
-    font-weight:800;
-  }
-  .video-frame{
-    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
-    border-radius:var(--radius-md);
-    overflow:hidden;
-    border:1px solid var(--line);
-  }
-  .video-frame .yt-topbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:10px 14px;
-    font-size:0.7rem;
-    color:#dfe6f2;
-    gap:8px;
-  }
-  .video-frame .yt-topbar .left{display:flex;align-items:center;gap:8px;min-width:0;}
-  .video-frame .yt-topbar .left span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .video-frame .yt-topbar .k-badge{
-    width:20px;height:20px;border-radius:50%;
-    overflow:hidden;flex:0 0 auto;
-  }
-  .video-frame .yt-topbar .k-badge img{width:100%;height:100%;object-fit:cover;}
-  .video-frame .yt-topbar .right{display:flex;gap:12px;color:#c9d3e4;flex:0 0 auto;}
-  .video-frame .yt-topbar .right span{display:flex;align-items:center;gap:4px;}
-  .video-frame .yt-topbar svg{width:14px;height:14px;}
-  .video-frame .stage{
-    position:relative;
-    aspect-ratio:16/9;
-    display:flex;align-items:center;justify-content:center;
-    background:#0a1220;
-    overflow:hidden;
-    cursor:pointer;
-  }
-  .video-frame .stage iframe{
-    position:absolute;
-    inset:0;
-    width:100%;height:100%;
-    border:0;
-  }
-  .video-frame .stage .thumb-bg{
-    position:absolute;
-    inset:0;
-    width:100%;height:100%;
-    object-fit:cover;
-  }
-  .video-frame .stage .play-btn{
-    position:relative;
-    z-index:1;
-    width:56px;height:56px;border-radius:50%;
-    background:#ff0000;
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;
-    box-shadow:0 4px 14px rgba(0,0,0,0.4);
-  }
-  .video-frame .stage .play-btn svg{width:22px;height:22px;margin-left:3px;}
-  .video-frame .caption{
-    text-align:center;
-    padding:12px;
-    font-size:0.85rem;
-    color:#dfe6f2;
-    font-weight:700;
-    display:flex;align-items:center;justify-content:center;gap:8px;
-  }
-  .video-frame .caption svg{width:18px;height:18px;color:#ff0000;}
+  .cta-banner .rocket{width:52px;height:52px;border-radius:14px;background:var(--gold-500);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex:0 0 auto;}
+  .cta-banner h3{margin:0 0 6px;color:#fff;font-size:1.3rem;font-weight:800;}
+  .cta-banner h3 .accent{color:var(--gold-400);}
+  .cta-banner p{margin:0;color:var(--muted);font-size:0.9rem;line-height:1.6;}
+  .cta-banner .btn-primary{background:var(--gold-500);}
 
   /* ===== Footer ===== */
-  footer.site{
-    background:var(--navy-900);
-    padding:26px 20px 20px;
-    text-align:center;
-    margin-top:6px;
-  }
-  .socials{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:16px;
-    margin-bottom:16px;
-  }
-  .socials a{
-    width:38px;height:38px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    color:#fff;
-  }
-  .socials svg{width:18px;height:18px;}
-  .s-linkedin{background:#0a66c2;}
-  .s-facebook{background:#1877f2;}
+  footer.site{background:var(--navy-900);color:#e7ecf5;padding:44px 24px 24px;}
+  .footer-inner{max-width:1200px;margin:0 auto;}
+  .footer-top{display:grid;grid-template-columns:1fr;gap:32px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.12);}
+  .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .footer-brand .crest{width:38px;height:38px;}
+  .footer-brand h5{margin:0;font-size:0.98rem;color:#fff;font-weight:800;font-family:'Inter', system-ui, sans-serif;}
+  .footer-brand p.tag{margin:2px 0 0;font-size:0.5rem;letter-spacing:1.2px;color:var(--gold-400);font-weight:700;}
+  .footer-col p.desc{color:#a9b4c7;font-size:0.85rem;line-height:1.6;max-width:34ch;}
+  .footer-col h6{margin:0 0 14px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.8px;color:#fff;font-weight:700;}
+  .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .footer-col ul a{color:#a9b4c7;font-size:0.86rem;}
+  .footer-col ul a:hover{color:var(--gold-400);}
+  .footer-contact-item{display:flex;align-items:flex-start;gap:10px;color:#a9b4c7;font-size:0.86rem;line-height:1.4;}
+  .footer-contact-item svg{width:16px;height:16px;flex:0 0 auto;margin-top:2px;color:var(--gold-400);}
+  .socials{display:flex;gap:10px;margin-top:18px;}
+  .socials a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;}
+  .s-facebook{background:#1877F2;}
   .s-instagram{background:radial-gradient(circle at 30% 30%, #fdf497, #fd5949 45%, #d6249f 70%, #285AEB);}
-  .s-tiktok{background:#010101;}
-  .s-whatsapp{background:#25D366;}
-  .s-youtube{background:#ff0000;}
-  footer.site p{
-    margin:0 0 8px;
-    color:#aeb8cc;
-    font-size:0.78rem;
-  }
-  footer.site .legal a{
-    color:var(--gold-400);
-    font-size:0.78rem;
-    margin:0 6px;
-  }
+  .s-tiktok{background:#000;}
+  .s-youtube{background:#FF0000;}
+  .socials svg{width:18px;height:18px;}
+  .footer-bottom{padding-top:20px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;font-size:0.78rem;color:#7c8aa3;}
+  .footer-bottom .legal{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .footer-bottom a{color:#a9b4c7;}
+  .footer-bottom a:hover{color:var(--gold-400);}
 
-  /* ===== Bottom mobile nav ===== */
+  /* ===== WhatsApp float + bottom nav ===== */
   .whatsapp-float{
-    position:fixed;
-    right:16px;
-    bottom:94px;
-    width:52px;height:52px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 6px 18px rgba(0,0,0,0.3);
-    z-index:120;
-    color:#fff;
+    position:fixed;right:16px;bottom:94px;width:52px;height:52px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);z-index:120;color:#fff;
   }
   .whatsapp-float svg{width:28px;height:28px;}
-
   nav.mobile-nav{
-    position:fixed;
-    bottom:0;left:0;right:0;
-    background:#fff;
-    border-top:1px solid #e7e2d3;
-    display:flex;
-    justify-content:space-around;
-    padding:8px 4px 10px;
-    z-index:50;
+    position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);
+    display:flex;z-index:100;padding:8px 4px 10px;
   }
-  nav.mobile-nav a{
-    display:flex;flex-direction:column;align-items:center;gap:4px;
-    font-size:0.62rem;
-    color:#556074;
-    font-weight:600;
-  }
+  nav.mobile-nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:#8792a3;font-size:0.62rem;font-weight:600;}
   nav.mobile-nav a.active{color:var(--gold-500);}
   nav.mobile-nav svg{width:22px;height:22px;}
 
-  /* ===== Responsividade — tablet e desktop ===== */
-  @media (min-width:640px){
-    .members-grid{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (min-width:768px){
-    main{max-width:760px;padding:24px;}
-  }
-  @media (min-width:1024px){
-    header.site{padding:16px 40px;}
-    main{max-width:1180px;padding:32px 40px;}
-    .hamburger{display:none;}
-    .nav-backdrop{display:none;}
-    .nav-menu{
-      position:static;
-      max-height:none;
-      overflow:visible;
-      background:transparent;
-      padding-top:0;
-      transition:none;
-    }
-    .nav-menu ul{
-      display:flex;
-      align-items:center;
-      gap:30px;
-      padding:0;
-      margin:0;
-    }
-    .nav-menu li{border-bottom:none;}
-    .nav-menu a{
-      display:inline-block;
-      color:var(--navy-900);
-      padding:6px 2px;
-      font-size:0.9rem;
-    }
-    .nav-menu a:hover{color:var(--gold-500);}
-    nav.mobile-nav{display:none;}
+  @media (min-width:900px){
     body{padding-bottom:0;}
-    .courses-grid{grid-template-columns:repeat(3,1fr);}
-    .members-grid{grid-template-columns:repeat(3,1fr);}
-    .painel-login, section.card.painel-login{max-width:480px;}
-  }
-  @media (min-width:1024px) and (max-width:1279px){
-    .courses-grid{grid-template-columns:repeat(2,1fr);}
-  }
-
-  /* ===== Seletor de Idioma ===== */
-  .lang-switch{
-    display:flex;
-    gap:6px;
-    padding:12px 20px 4px;
-  }
-  .lang-switch button{
-    flex:1;
-    padding:8px 6px;
-    background:transparent;
-    border:1px solid var(--line);
-    color:var(--muted);
-    border-radius:8px;
-    font-family:inherit;
-    font-size:0.78rem;
-    font-weight:700;
-    cursor:pointer;
-    letter-spacing:0.5px;
-  }
-  .lang-switch button.lang-ativo{
-    background:var(--gold-400);
-    border-color:var(--gold-400);
-    color:var(--navy-900);
-  }
-  @media (min-width:1024px){
-    .lang-switch{padding:0;gap:4px;}
-    .lang-switch button{flex:0 0 auto;padding:5px 9px;font-size:0.72rem;}
+    .hamburger,.nav-menu,.nav-backdrop{display:none;}
+    nav.mobile-nav,.whatsapp-float{display:none;}
+    .desktop-nav{display:flex;}
+    .navbar-cta{display:inline-flex;}
+    .hero{grid-template-columns:1.05fr 0.95fr;padding:64px 0 80px;}
+    .hero h2{font-size:2.9rem;}
+    .hero p.desc{font-size:1.05rem;}
+    .areas-grid{grid-template-columns:repeat(3,1fr);}
+    .stats-bar{grid-template-columns:repeat(4,1fr);padding:30px 40px;}
+    .courses-grid{grid-template-columns:repeat(4,1fr);}
+    .courses-top{align-items:center;}
+    .cta-banner{flex-direction:row;align-items:center;justify-content:space-between;padding:38px 44px;}
+    .cta-banner .cta-left{display:flex;align-items:center;gap:22px;}
+    .footer-top{grid-template-columns:1.3fr 1fr 1fr 1fr;}
   }
 </style>
 </head>
 <body>
 
 <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-<header class="site">
-  <div class="brand">
-    <div class="crest"><img src="assets/logo.png" alt="Karlyon Enterprise S.A."></div>
-    <div class="name-block">
-      <h1>KARLYON ENTERPRISE S.A.</h1>
-      <p>ENTERPRISE SOLUTIONS &bull; ACADEMY APPLIED</p>
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <div class="brand">
+      <div class="crest"><img src="assets/logo.png" alt="Karlyon Enterprise S.A."></div>
+      <div class="name-block">
+        <h1>KARLYON</h1>
+        <p>ENTERPRISE S.A™</p>
+      </div>
     </div>
+    <nav class="desktop-nav">
+      <a href="index.html" class="active">Início</a>
+      <a href="sobre.html">Sobre Nós</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="academia.html">Academia</a>
+      <a href="artigos.html">Artigos</a>
+      <a href="contactos.html">Contactos</a>
+    </nav>
+    <a class="btn btn-primary navbar-cta" href="contactos.html">Fale Conosco</a>
+    <button class="hamburger" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="hamburger" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
 </header>
 
 <div class="nav-backdrop" id="navBackdrop"></div>
-<nav class="nav-menu" id="navMenu">
+<nav class="nav-menu">
   <ul>
-    <li><a href="index.html" data-i18n="nav.inicio">Início</a></li>
-    <li><a href="academia.html" data-i18n="nav.cursos">Cursos</a></li>
-    <li><a href="servicos.html" data-i18n="nav.servicos">Serviços</a></li>
-    <li><a href="artigos.html" data-i18n="nav.artigos">Artigos</a></li>
-    <li><a href="sobre.html" data-i18n="nav.sobre">Sobre</a></li>
-    <li><a href="contactos.html" data-i18n="nav.contactos">Contactos</a></li>
-    <li class="lang-switch">
-      <button type="button" data-lang="pt">PT</button>
-      <button type="button" data-lang="en">EN</button>
-      <button type="button" data-lang="fr">FR</button>
-    </li>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="sobre.html">Sobre Nós</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
+    <li><a href="academia.html">Academia</a></li>
+    <li><a href="artigos.html">Artigos</a></li>
+    <li><a href="contactos.html">Contactos</a></li>
   </ul>
 </nav>
 
 <main>
 
-  <!-- Team photo -->
-  <section class="card team-card">
-    <img src="assets/team.png" alt="Equipa Karlyon Enterprise S.A.">
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Karlyon Enterprise S.A™</p>
+      <h2>Impulsionamos pessoas, <span class="accent">negócios e marcas</span> para o próximo nível.</h2>
+      <p class="desc">Somos uma empresa multissectorial moçambicana que actua em diversas áreas — da formação académica à consultoria de negócios — para transformar ideias em resultados reais.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="servicos.html">Conheça os Serviços
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-outline" href="sobre.html">Sobre Nós
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="dots tl"></div>
+      <div class="frame"><img src="assets/team.png" alt="Equipa Karlyon Enterprise S.A."></div>
+      <div class="dots br"></div>
+    </div>
   </section>
 
-  <!-- Course cards -->
-  <section class="courses-grid">
-
-    <div class="course-card">
-      <div class="thumb-frame"><img class="thumb" src="assets/cursos/projeto-academico.jpg" alt="Elaboração de Projetos de Pesquisa"></div>
-      <div class="body">
-        <h3>Elaboração de Projetos de Pesquisa</h3>
-        <p>Metodologia, estrutura e orientação para projetos académicos e científicos.</p>
-        <div class="meta-row">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 20h 00m</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Intermediário</span>
-        </div>
-        <button class="btn-ver" onclick="window.location.href='cursos/projeto-academico.html'">Ver Curso</button>
-      </div>
-    </div>
-
-    <div class="course-card">
-      <div class="thumb-frame"><img class="thumb" src="assets/cursos/softwares-educativos.jpg" alt="IAs e Softwares Educativos"></div>
-      <div class="body">
-        <h3>IAs e Softwares Educativos</h3>
-        <p>Uso de Inteligência Artificial e softwares educativos para potencializar o aprendizado e a produtividade.</p>
-        <div class="meta-row">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 15h 00m</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Intermediário</span>
-        </div>
-        <button class="btn-ver" onclick="window.location.href='cursos/softwares-educativos.html'">Ver Curso</button>
-      </div>
-    </div>
-
-    <div class="course-card">
-      <div class="thumb-frame"><img class="thumb" src="assets/cursos/plano-negocio-pratico.jpg" alt="Empreendedorismo e Plano de Negócio"></div>
-      <div class="body">
-        <h3>Empreendedorismo e Plano de Negócio</h3>
-        <p>Aprenda a criar, estruturar e gerir o seu negócio com estratégias práticas e foco em resultados.</p>
-        <div class="meta-row">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 18h 30m</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Intermediário</span>
-        </div>
-        <button class="btn-ver" onclick="window.location.href='cursos/plano-negocio-pratico.html'">Ver Curso</button>
-      </div>
-    </div>
-
-    <div class="course-card">
-      <div class="thumb-frame"><img class="thumb" src="assets/cursos/cv-carta-profissional.jpg" alt="Preparação para o Mercado de Emprego"></div>
-      <div class="body">
-        <h3>Preparação para o Mercado de Emprego</h3>
-        <p>Desenvolva competências profissionais, elabore seu CV, prepare-se para entrevistas e conquiste oportunidades.</p>
-        <div class="meta-row">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 12h 00m</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Iniciante</span>
-        </div>
-        <button class="btn-ver" onclick="window.location.href='cursos/cv-carta-profissional.html'">Ver Curso</button>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Artigos -->
-  <section class="articles-section" id="artigos">
+  <!-- ===== Áreas de Actuação ===== -->
+  <section class="section">
     <div class="section-head">
-      <h3>Artigos</h3>
-      <a href="artigos.html" style="font-size:0.7rem;color:var(--orange-600);font-weight:700;">Ver todos &rsaquo;</a>
+      <p class="eyebrow">O que fazemos</p>
+      <h3>Áreas de Actuação</h3>
+      <p>Actuamos em diferentes áreas para oferecer soluções completas e personalizadas que geram resultados reais.</p>
     </div>
-    <div class="articles-carousel">
-      <div class="articles-track">
-
-      <a class="article-card" href="artigo-neurociencia-habitos.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-neurociencia-habitos.jpg" alt="Neurociência dos hábitos"></div>
-        <div class="body">
-          <span class="tag">Neurociência</span>
-          <h4>Como o cérebro constrói hábitos duradouros</h4>
-          <p>Entenda os circuitos neuronais por trás da repetição e como usar esse conhecimento para criar rotinas mais saudáveis.</p>
-          <div class="read-row">
-            <span class="date">12 Jul 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" href="artigo-saude-sono.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-saude-sono.jpg" alt="Saúde e sono"></div>
-        <div class="body">
-          <span class="tag">Saúde</span>
-          <h4>O sono como pilar da saúde mental e física</h4>
-          <p>Descubra por que dormir bem influencia diretamente a memória, a imunidade e o equilíbrio emocional.</p>
-          <div class="read-row">
-            <span class="date">05 Jul 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" href="artigo-filosofia-tempo.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-filosofia-tempo.jpg" alt="Filosofia do tempo"></div>
-        <div class="body">
-          <span class="tag">Filosofia</span>
-          <h4>O que a filosofia nos ensina sobre o tempo</h4>
-          <p>Uma reflexão sobre a percepção humana do tempo, entre o instante presente e a busca pelo sentido.</p>
-          <div class="read-row">
-            <span class="date">28 Jun 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" href="artigo-psicologia-foco.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-psicologia-foco.jpg" alt="Psicologia do foco"></div>
-        <div class="body">
-          <span class="tag">Psicologia</span>
-          <h4>Foco na era da distração constante</h4>
-          <p>Estratégias psicológicas para recuperar a atenção plena num mundo repleto de estímulos.</p>
-          <div class="read-row">
-            <span class="date">19 Jun 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" href="artigo-artes-criatividade.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-artes-criatividade.jpg" alt="Artes e criatividade"></div>
-        <div class="body">
-          <span class="tag">Artes</span>
-          <h4>A criatividade como exercício diário da mente</h4>
-          <p>Como a prática artística regular fortalece a saúde cognitiva e amplia a capacidade de resolver problemas.</p>
-          <div class="read-row">
-            <span class="date">10 Jun 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-
-      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-neurociencia-habitos.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-neurociencia-habitos.jpg" alt="Neurociência dos hábitos"></div>
-        <div class="body">
-          <span class="tag">Neurociência</span>
-          <h4>Como o cérebro constrói hábitos duradouros</h4>
-          <p>Entenda os circuitos neuronais por trás da repetição e como usar esse conhecimento para criar rotinas mais saudáveis.</p>
-          <div class="read-row">
-            <span class="date">12 Jul 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-saude-sono.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-saude-sono.jpg" alt="Saúde e sono"></div>
-        <div class="body">
-          <span class="tag">Saúde</span>
-          <h4>O sono como pilar da saúde mental e física</h4>
-          <p>Descubra por que dormir bem influencia diretamente a memória, a imunidade e o equilíbrio emocional.</p>
-          <div class="read-row">
-            <span class="date">05 Jul 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-filosofia-tempo.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-filosofia-tempo.jpg" alt="Filosofia do tempo"></div>
-        <div class="body">
-          <span class="tag">Filosofia</span>
-          <h4>O que a filosofia nos ensina sobre o tempo</h4>
-          <p>Uma reflexão sobre a percepção humana do tempo, entre o instante presente e a busca pelo sentido.</p>
-          <div class="read-row">
-            <span class="date">28 Jun 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-psicologia-foco.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-psicologia-foco.jpg" alt="Psicologia do foco"></div>
-        <div class="body">
-          <span class="tag">Psicologia</span>
-          <h4>Foco na era da distração constante</h4>
-          <p>Estratégias psicológicas para recuperar a atenção plena num mundo repleto de estímulos.</p>
-          <div class="read-row">
-            <span class="date">19 Jun 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
-      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-artes-criatividade.html">
-        <div class="thumb-frame"><img class="thumb" src="assets/artigos/artigo-artes-criatividade.jpg" alt="Artes e criatividade"></div>
-        <div class="body">
-          <span class="tag">Artes</span>
-          <h4>A criatividade como exercício diário da mente</h4>
-          <p>Como a prática artística regular fortalece a saúde cognitiva e amplia a capacidade de resolver problemas.</p>
-          <div class="read-row">
-            <span class="date">10 Jun 2026</span>
-            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
-
+    <div class="areas-grid">
+      <div class="area-card">
+        <div class="icon" style="background:rgba(47,111,237,0.12);">💻</div>
+        <h4>Websites & Sistemas Web</h4>
+        <p>Soluções digitais completas para empresas, clínicas e instituições.</p>
+        <a class="go" href="servicos.html">Saber mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="area-card">
+        <div class="icon" style="background:rgba(198,135,15,0.12);">🎓</div>
+        <h4>Trabalhos Académicos</h4>
+        <p>Acompanhamento rigoroso desde a escolha do tema até à defesa final.</p>
+        <a class="go" href="servicos.html">Saber mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="area-card">
+        <div class="icon" style="background:rgba(31,122,77,0.12);">🎨</div>
+        <h4>Design Gráfico</h4>
+        <p>Identidade visual profissional para destacar a tua marca.</p>
+        <a class="go" href="servicos.html">Saber mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="area-card">
+        <div class="icon" style="background:rgba(10,18,32,0.08);">📄</div>
+        <h4>Currículo & Carreira</h4>
+        <p>Apresenta-te da melhor forma ao mercado de trabalho.</p>
+        <a class="go" href="servicos.html">Saber mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="area-card">
+        <div class="icon" style="background:rgba(47,111,237,0.12);">💼</div>
+        <h4>Negócios & Consultoria</h4>
+        <p>Planeamento estratégico para transformar ideias em negócios sólidos.</p>
+        <a class="go" href="servicos.html">Saber mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="area-card">
+        <div class="icon" style="background:rgba(198,135,15,0.12);">📈</div>
+        <h4>Marketing Digital</h4>
+        <p>Presença digital forte, com estratégia e consistência.</p>
+        <a class="go" href="servicos.html">Saber mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Video -->
-  <section class="card video-card">
-    <h3>Conheça a Karlyon Enterprise S.A.</h3>
-    <div class="video-frame">
-      <div class="yt-topbar">
-        <div class="left">
-          <div class="k-badge"><img src="assets/logo.png" alt="Karlyon"></div>
-          <span>Karlyon Enterprise S.A. - Apresentação Institucional</span>
+  <!-- ===== Stats ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="num-icon" style="background:rgba(47,111,237,0.12);">🎓</div>
+        <div><div class="num">5+</div><div class="label">Cursos Disponíveis</div></div>
+      </div>
+      <div class="stat">
+        <div class="num-icon" style="background:rgba(198,135,15,0.12);">🧩</div>
+        <div><div class="num">6</div><div class="label">Áreas de Atuação</div></div>
+      </div>
+      <div class="stat">
+        <div class="num-icon" style="background:rgba(31,122,77,0.12);">💻</div>
+        <div><div class="num">100%</div><div class="label">Online e Acessível</div></div>
+      </div>
+      <div class="stat">
+        <div class="num-icon" style="background:rgba(10,18,32,0.08);">📜</div>
+        <div><div class="num">✓</div><div class="label">Certificado Incluído</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Cursos em Destaque ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="courses-top">
+      <div>
+        <p class="eyebrow" style="text-align:left;">Academia</p>
+        <h3 style="margin:6px 0 8px;font-size:1.5rem;color:var(--navy-900);font-weight:800;">Cursos em Destaque</h3>
+        <p style="margin:0;color:var(--muted);font-size:0.92rem;max-width:44ch;">Invista no seu futuro com os nossos cursos práticos, desenhados para o mercado actual.</p>
+      </div>
+      <a class="btn btn-primary" href="academia.html">Ver Todos os Cursos
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="courses-grid">
+      <a class="course-card" href="cursos/marketing-digital-inteligente.html">
+        <div class="thumb"><img src="assets/cursos/marketing-digital-inteligente.jpg" alt="Marketing Digital Inteligente"></div>
+        <div class="body">
+          <span class="badge badge-intermedio">Intermediário</span>
+          <h4>Marketing Digital Inteligente</h4>
+          <div class="price-row">
+            <span class="price">750 MZN</span>
+            <span class="go-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
         </div>
-        <div class="right">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Assistir m...</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="m8 10.8 8-4.6M8 13.2l8 4.6"/></svg> Compartilhar</span>
+      </a>
+      <a class="course-card" href="cursos/projeto-academico.html">
+        <div class="thumb"><img src="assets/cursos/projeto-academico.jpg" alt="Projeto Académico"></div>
+        <div class="body">
+          <span class="badge badge-intermedio">Intermédio</span>
+          <h4>Projeto Académico</h4>
+          <div class="price-row">
+            <span class="price">750 MZN</span>
+            <span class="go-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="course-card" href="cursos/softwares-educativos.html">
+        <div class="thumb"><img src="assets/cursos/softwares-educativos.jpg" alt="Softwares Educativos"></div>
+        <div class="body">
+          <span class="badge badge-iniciante">Iniciante</span>
+          <h4>Softwares Educativos</h4>
+          <div class="price-row">
+            <span class="price">750 MZN</span>
+            <span class="go-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="course-card" href="cursos/cv-carta-profissional.html">
+        <div class="thumb"><img src="assets/cursos/cv-carta-profissional.jpg" alt="CV & Carta Profissional"></div>
+        <div class="body">
+          <span class="badge badge-iniciante">Iniciante</span>
+          <h4>CV & Carta Profissional</h4>
+          <div class="price-row">
+            <span class="price">750 MZN</span>
+            <span class="go-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== CTA banner ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="cta-banner">
+      <div class="cta-left">
+        <div class="rocket">🚀</div>
+        <div>
+          <h3>Pronto para transformar a <span class="accent">sua visão</span> em realidade?</h3>
+          <p>Fale com a nossa equipa e descubra como podemos ajudar a alcançar os seus objectivos.</p>
         </div>
       </div>
-      <div class="stage" id="videoStage" onclick="playInstitutionalVideo()" role="button" tabindex="0" aria-label="Reproduzir vídeo institucional">
-        <img class="thumb-bg" src="https://img.youtube.com/vi/kXjH1491mEY/maxresdefault.jpg" alt="Vídeo institucional Karlyon Enterprise S.A.">
-        <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-      </div>
-      <div class="caption"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg> Vídeo institucional</div>
+      <a class="btn btn-primary" href="contactos.html">Fale Conosco
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </section>
 
 </main>
 
 <footer class="site">
-  <div class="socials">
-    <a class="s-facebook" href="https://www.facebook.com/Karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="Facebook">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg>
-    </a>
-    <a class="s-instagram" href="https://www.instagram.com/karlyonenterprise_oficial" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
-    </a>
-    <a class="s-tiktok" href="https://www.tiktok.com/@karlyonenterprise" target="_blank" rel="noopener" aria-label="TikTok">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.86-1.4-2.07-1.4-3.32h-3.13v13.4c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1-2.8-2.8 2.8 2.8 0 0 1 2.8-2.8c.29 0 .57.04.83.13v-3.18a6 6 0 0 0-.83-.06 5.93 5.93 0 0 0-5.93 5.93 5.93 5.93 0 0 0 5.93 5.93 5.93 5.93 0 0 0 5.93-5.93V9.35a8.4 8.4 0 0 0 4.9 1.57V7.79a5.4 5.4 0 0 1-3.5-1.97Z"/></svg>
-    </a>
-    <a class="s-youtube" href="https://www.youtube.com/@Karlyonenterprise_Oficial" target="_blank" rel="noopener" aria-label="YouTube">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg>
-    </a>
-  </div>
-  <p>© 2026 Karlyon Enterprise S.A. — <span data-i18n="footer.direitos">Todos os direitos reservados.</span></p>
-  <div class="legal">
-    <a href="privacidade.html" data-i18n="footer.privacidade">Privacidade</a> &bull;
-    <a href="termos.html" data-i18n="footer.termos">Termos de Uso</a> &bull;
-    <a href="cookies.html" data-i18n="footer.cookies">Cookies</a>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="crest"><img src="assets/logo.png" alt="Karlyon Enterprise S.A."></div>
+          <div>
+            <h5>KARLYON</h5>
+            <p class="tag">ENTERPRISE S.A™</p>
+          </div>
+        </div>
+        <p class="desc">Empresa multissectorial que impulsiona pessoas, negócios e marcas em Moçambique.</p>
+        <div class="socials">
+          <a class="s-facebook" href="https://www.facebook.com/Karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg>
+          </a>
+          <a class="s-instagram" href="https://www.instagram.com/karlyonenterprise_oficial" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          </a>
+          <a class="s-tiktok" href="https://www.tiktok.com/@karlyonenterprise" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.86-1.4-2.07-1.4-3.32h-3.13v13.4c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1-2.8-2.8 2.8 2.8 0 0 1 2.8-2.8c.29 0 .57.04.83.13v-3.18a6 6 0 0 0-.83-.06 5.93 5.93 0 0 0-5.93 5.93 5.93 5.93 0 0 0 5.93 5.93 5.93 5.93 0 0 0 5.93-5.93V9.35a8.4 8.4 0 0 0 4.9 1.57V7.79a5.4 5.4 0 0 1-3.5-1.97Z"/></svg>
+          </a>
+          <a class="s-youtube" href="https://www.youtube.com/@Karlyonenterprise_Oficial" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h6>Navegação</h6>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="academia.html">Academia</a></li>
+          <li><a href="artigos.html">Artigos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h6>Serviços</h6>
+        <ul>
+          <li><a href="servicos.html">Websites & Sistemas Web</a></li>
+          <li><a href="servicos.html">Trabalhos Académicos</a></li>
+          <li><a href="servicos.html">Design Gráfico</a></li>
+          <li><a href="servicos.html">Negócios & Consultoria</a></li>
+          <li><a href="servicos.html">Marketing Digital</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h6>Contactos</h6>
+        <ul>
+          <li class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5c0-1 .8-2 2-2h2l2 5-2 1.4a11 11 0 0 0 5.6 5.6L15 13l5 2v2c0 1.1-1 2-2 2C10.5 19 5 13.5 5 7c0-.2 0-.5-1-2Z"/></svg>
+            +258 82 130 0088
+          </li>
+          <li class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            karlyonenterprise@gmail.com
+          </li>
+          <li class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Beira, Moçambique
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Karlyon Enterprise S.A. — Todos os direitos reservados.</p>
+      <div class="legal">
+        <a href="privacidade.html">Privacidade</a>
+        <a href="termos.html">Termos de Uso</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -899,23 +560,23 @@
 <nav class="mobile-nav">
   <a href="index.html" class="active">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.5"/></svg>
-    <span data-i18n="nav.inicio">Início</span>
+    <span>Início</span>
   </a>
   <a href="academia.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 5 20 12l-8 7-8-7 8-7Z"/></svg>
-    <span data-i18n="nav.cursos">Cursos</span>
+    <span>Cursos</span>
   </a>
   <a href="servicos.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7" width="17" height="10" rx="2"/></svg>
-    <span data-i18n="nav.servicos">Serviços</span>
+    <span>Serviços</span>
   </a>
   <a href="sobre.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h10"/></svg>
-    <span data-i18n="nav.sobre">Sobre</span>
+    <span>Sobre</span>
   </a>
   <a href="contactos.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5c0-1 .8-2 2-2h2l2 5-2 1.4a11 11 0 0 0 5.6 5.6L15 13l5 2v2c0 1.1-1 2-2 2C10.5 19 5 13.5 5 7c0-.2 0-.5-1-2Z"/></svg>
-    <span data-i18n="nav.contactos">Contactos</span>
+    <span>Contactos</span>
   </a>
 </nav>
 
@@ -932,14 +593,6 @@
   });
   navBackdrop.addEventListener('click', closeMenu);
   document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', closeMenu));
-
-  function playInstitutionalVideo(){
-    const stage = document.getElementById('videoStage');
-    stage.innerHTML = '<iframe src="https://www.youtube.com/embed/kXjH1491mEY?autoplay=1&rel=0" title="Vídeo institucional Karlyon Enterprise S.A." allow="accelerate-motion; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-    stage.onclick = null;
-    stage.style.cursor = 'default';
-  }
 </script>
-<script src="i18n.js"></script>
 </body>
 </html>

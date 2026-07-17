@@ -159,7 +159,7 @@ class GerenciadorCursos {
       
       html += `
         <div>
-          <h3 style="margin:0 0 12px;font-family:'Playfair Display', Georgia, serif;color:var(--navy-900);font-size:1.05rem;">${emoji} ${categoria}</h3>
+          <h3 style="margin:0 0 12px;font-family:'Inter', system-ui, sans-serif;color:var(--navy-900);font-size:1.05rem;">${emoji} ${categoria}</h3>
           <div class="courses-grid">
             ${this.renderizarGridCursos(categoria)}
           </div>
@@ -177,7 +177,7 @@ class GerenciadorCursos {
 
     return `
       <section class="card painel-login">
-        <h3 style="margin:0 0 6px;font-family:'Playfair Display', Georgia, serif;color:#fff;font-size:1.15rem;">👤 <span data-i18n="painel.titulo">Painel do Aluno</span></h3>
+        <h3 style="margin:0 0 6px;font-family:'Inter', system-ui, sans-serif;color:#fff;font-size:1.15rem;">👤 <span data-i18n="painel.titulo">Painel do Aluno</span></h3>
 
         <div id="painelTabs" style="display:flex;gap:6px;margin:14px 0 16px;background:#0f2b4a;padding:4px;border-radius:var(--radius-md);">
           <button type="button" id="tabEntrar" data-tab="entrar" data-i18n="btn.entrar" style="flex:1;padding:9px 8px;border:none;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;font-family:inherit;background:var(--gold-400);color:var(--navy-900);">Entrar</button>
@@ -234,7 +234,7 @@ class GerenciadorCursos {
       <section class="card painel-aluno">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px;">
           <div style="min-width:0;">
-            <h3 style="margin:0;font-family:'Playfair Display', Georgia, serif;color:#fff;font-size:1.15rem;">👤 ${this.usuarioLogado.nome}</h3>
+            <h3 style="margin:0;font-family:'Inter', system-ui, sans-serif;color:#fff;font-size:1.15rem;">👤 ${this.usuarioLogado.nome}</h3>
             ${this.usuarioLogado.email ? `<p style="margin:2px 0 0;color:var(--muted);font-size:0.78rem;">${this.usuarioLogado.email}</p>` : ''}
             <p style="margin:4px 0 0;color:var(--gold-300);font-size:0.8rem;">Aluno desde ${new Date(this.usuarioLogado.dataSessao).toLocaleDateString('pt-PT')}</p>
           </div>

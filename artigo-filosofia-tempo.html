@@ -8,17 +8,17 @@
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy-900:#0a1220;
   --navy-800:#13294f;
-  --gold-500:#c81e2c;
+  --gold-500:#c6870f;
     --green-600:#1f7a4d;
     --blue-600:#2f6fed;
-  --gold-400:#e63946;
-  --gold-300:#f4a6ab;
-  --orange-600:#2f6fed;
+  --gold-400:#dba234;
+  --gold-300:#f1d9a6;
+  --orange-600:#b5760a;
   --cream:#f7f9fc;
   --ink:#0a1220;
   --muted:#a9b4c7;
@@ -26,9 +26,9 @@
   --radius-lg:18px;
   --radius-md:12px;
 }
-.brand-stripe{display:flex;width:100%;height:4px;}
+.brand-stripe{display:none;width:100%;height:4px;}
 .brand-stripe span{flex:1 1 0;}
-.brand-stripe span:nth-child(1){background:var(--blue-600);}
+.brand-stripe span:nth-child(1){background:var(--gold-500);}
 .brand-stripe span:nth-child(2){background:var(--gold-500);}
 .brand-stripe span:nth-child(3){background:var(--green-600);}
 .brand-stripe span:nth-child(4){background:var(--navy-900);}
@@ -54,7 +54,7 @@ header.site{
 .brand{display:flex;align-items:center;gap:10px;min-width:0;}
 .brand .crest{width:46px;height:46px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;}
 .brand .crest img{width:100%;height:100%;object-fit:contain;}
-.brand .name-block h1{margin:0;font-family:'Playfair Display', Georgia, serif;font-size:0.98rem;letter-spacing:0.2px;color:var(--navy-900);font-weight:800;line-height:1.15;white-space:nowrap;}
+.brand .name-block h1{margin:0;font-family:'Inter', system-ui, sans-serif;font-size:0.98rem;letter-spacing:0.2px;color:var(--navy-900);font-weight:800;line-height:1.15;white-space:nowrap;}
 .brand .name-block p{margin:3px 0 0;font-size:0.52rem;letter-spacing:1.2px;color:var(--orange-600);font-weight:700;white-space:nowrap;}
 .hamburger{width:40px;height:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:transparent;border:none;cursor:pointer;flex:0 0 auto;position:relative;z-index:110;}
 .hamburger span{width:24px;height:2.5px;background:var(--navy-900);border-radius:2px;transition:transform .25s ease, opacity .2s ease;}
@@ -66,7 +66,7 @@ body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(
 body.menu-open .nav-menu{max-height:600px;}
 .nav-menu ul{list-style:none;margin:0;padding:8px 20px 24px;}
 .nav-menu li{border-bottom:1px solid var(--line);}
-.nav-menu a{display:block;padding:14px 4px;color:#fff;font-weight:600;font-size:0.98rem;font-family:'Playfair Display', Georgia, serif;}
+.nav-menu a{display:block;padding:14px 4px;color:#fff;font-weight:600;font-size:0.98rem;font-family:'Inter', system-ui, sans-serif;}
 .nav-menu a:hover{color:var(--gold-400);}
 .nav-backdrop{position:fixed;inset:0;background:rgba(10,21,38,0.4);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:90;}
 body.menu-open .nav-backdrop{opacity:1;pointer-events:auto;}
@@ -85,7 +85,7 @@ main{max-width:640px;margin:0 auto;padding:16px;display:flex;flex-direction:colu
   padding:5px 12px;border-radius:20px;display:inline-block;margin:2px 2px 0;
 }
 .article-title{
-  margin:6px 2px 0;font-family:'Playfair Display', Georgia, serif;font-size:1.4rem;font-weight:800;
+  margin:6px 2px 0;font-family:'Inter', system-ui, sans-serif;font-size:1.4rem;font-weight:800;
   color:var(--navy-900);line-height:1.28;
 }
 .article-meta{display:flex;gap:14px;margin:2px 2px 4px;font-size:0.75rem;color:#8a7a55;font-weight:600;}
@@ -98,7 +98,7 @@ main{max-width:640px;margin:0 auto;padding:16px;display:flex;flex-direction:colu
 .article-body p{margin:0 0 14px;}
 .article-body p:last-child{margin-bottom:0;}
 .article-body h2{
-  font-family:'Playfair Display', Georgia, serif;color:#fff;font-size:1.05rem;font-weight:800;
+  font-family:'Inter', system-ui, sans-serif;color:#fff;font-size:1.05rem;font-weight:800;
   margin:0 0 10px;
 }
 
