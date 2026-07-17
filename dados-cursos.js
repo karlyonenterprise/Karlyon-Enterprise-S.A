@@ -7,8 +7,8 @@ const CURSOS_DATABASE = {
     categoria: "Empreendedorismo",
     emoji: "💰",
     descricaoBreve: "Ensinar a elaborar um plano de negócio estruturado e apresentá-lo de forma profissional.",
-    imagem: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-    videoYouTubeId: "dQw4w9WgXcQ", // Placeholder - substituir pelo ID real
+    imagem: "assets/cursos/plano-negocio-pratico.jpg",
+    videoYouTubeId: "", // Adicione o ID do YouTube aqui quando o vídeo estiver pronto
     duracao: "15 horas",
     modalidade: "Online",
     nivel: "Intermediário",
@@ -26,8 +26,8 @@ const CURSOS_DATABASE = {
     categoria: "Marketing Digital",
     emoji: "📈",
     descricaoBreve: "Capacitar na criação e gestão de estratégias digitais modernas, incluindo uso de IA, para publicidade e promoção.",
-    imagem: "https://images.unsplash.com/photo-1460925895917-adf4e565e479?auto=format&fit=crop&w=800&q=80",
-    videoYouTubeId: "dQw4w9WgXcQ",
+    imagem: "assets/cursos/marketing-digital-inteligente.jpg",
+    videoYouTubeId: "", // Adicione o ID do YouTube aqui quando o vídeo estiver pronto
     duracao: "15 horas",
     modalidade: "Online",
     nivel: "Intermediário",
@@ -46,8 +46,8 @@ const CURSOS_DATABASE = {
     categoria: "Académica",
     emoji: "🎓",
     descricaoBreve: "Capacitar estudantes na elaboração de projetos de pesquisa e monografias, aplicando normas académicas e objetivos claros.",
-    imagem: "https://images.unsplash.com/photo-1427915591429-2c18565a266a?auto=format&fit=crop&w=800&q=80",
-    videoYouTubeId: "dQw4w9WgXcQ",
+    imagem: "assets/cursos/projeto-academico.jpg",
+    videoYouTubeId: "", // Adicione o ID do YouTube aqui quando o vídeo estiver pronto
     duracao: "15 horas",
     modalidade: "Online",
     nivel: "Intermédio",
@@ -65,8 +65,8 @@ const CURSOS_DATABASE = {
     categoria: "Académica",
     emoji: "🎓",
     descricaoBreve: "Ensinar o uso de softwares educativos e IA para ensino, aprendizagem e pesquisa académica.",
-    imagem: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-    videoYouTubeId: "dQw4w9WgXcQ",
+    imagem: "assets/cursos/softwares-educativos.jpg",
+    videoYouTubeId: "", // Adicione o ID do YouTube aqui quando o vídeo estiver pronto
     duracao: "12 horas",
     modalidade: "Online",
     nivel: "Iniciante",
@@ -85,8 +85,8 @@ const CURSOS_DATABASE = {
     categoria: "Editora",
     emoji: "📚",
     descricaoBreve: "Ensinar a criar currículos e cartas de motivação adaptados a diferentes contextos profissionais, públicos e privados.",
-    imagem: "https://images.unsplash.com/photo-1633356713618-e139a11772ea?auto=format&fit=crop&w=800&q=80",
-    videoYouTubeId: "dQw4w9WgXcQ",
+    imagem: "assets/cursos/cv-carta-profissional.jpg",
+    videoYouTubeId: "", // Adicione o ID do YouTube aqui quando o vídeo estiver pronto
     duracao: "10 horas",
     modalidade: "Online",
     nivel: "Iniciante",
