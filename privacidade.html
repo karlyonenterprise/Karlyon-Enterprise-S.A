@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Política de Privacidade da Karlyon Enterprise S.A. Saiba como recolhemos, usamos e protegemos os seus dados pessoais.">
+<meta name="keywords" content="privacidade, política de privacidade, proteção de dados, karlyon">
+<title>Política de Privacidade — Karlyon Enterprise S.A.</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0a1526;
+    --navy-800:#0e1d36;
+    --gold-500:#dda54a;
+    --gold-400:#e9bd6c;
+    --gold-300:#f2d193;
+    --orange-600:#e8790f;
+    --cream:#fdf9f0;
+    --ink:#0a1526;
+    --muted:#b7c1d4;
+    --line:rgba(221,165,74,0.38);
+    --radius-lg:18px;
+    --radius-md:12px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    color:var(--ink);
+    padding-bottom:78px;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  svg{display:block;}
+
+  /* ===== Header ===== */
+  header.site{
+    background:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 14px;
+    border-bottom:1px solid #ecdfc0;
+    gap:10px;
+    position:relative;
+    z-index:105;
+  }
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand .crest{
+    width:46px;height:46px;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand .crest img{
+    width:100%;height:100%;object-fit:contain;
+  }
+  .brand .name-block h1{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:0.98rem;
+    letter-spacing:0.2px;
+    color:var(--navy-900);
+    font-weight:800;
+    line-height:1.15;
+    white-space:nowrap;
+  }
+  .brand .name-block p{
+    margin:3px 0 0;
+    font-size:0.52rem;
+    letter-spacing:1.2px;
+    color:var(--orange-600);
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .hamburger{
+    width:40px;height:40px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    background:transparent;border:none;cursor:pointer;flex:0 0 auto;
+    position:relative;z-index:110;
+  }
+  .hamburger span{
+    width:24px;height:2.5px;background:var(--navy-900);border-radius:2px;
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  body.menu-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+  body.menu-open .hamburger span:nth-child(2){opacity:0;}
+  body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+  /* ===== Nav menu (hamburger dropdown) ===== */
+  .nav-menu{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:var(--navy-900);
+    padding-top:78px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+    z-index:100;
+  }
+  body.menu-open .nav-menu{max-height:600px;}
+  .nav-menu ul{list-style:none;margin:0;padding:8px 20px 24px;}
+  .nav-menu li{border-bottom:1px solid var(--line);}
+  .nav-menu a{
+    display:block;
+    padding:14px 4px;
+    color:#fff;
+    font-weight:600;
+    font-size:0.98rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .nav-menu a:hover{color:var(--gold-400);}
+  .nav-backdrop{
+    position:fixed;inset:0;
+    background:rgba(10,21,38,0.4);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:90;
+  }
+  body.menu-open .nav-backdrop{opacity:1;pointer-events:auto;}
+
+  main{max-width:640px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px;}
+
+  .card{
+    background:var(--navy-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:22px 20px;
+    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+  }
+
+  /* ===== Hero (full-bleed band, not a card) ===== */
+  .hero-band{
+    background:var(--navy-900);
+    width:100%;
+  }
+  .hero-band .hero-inner{
+    max-width:640px;
+    margin:0 auto;
+    padding:26px 20px 28px;
+  }
+  .hero-band h2{
+    margin:0 0 4px;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.5rem;
+    color:#fff;
+    font-weight:800;
+    line-height:1.2;
+  }
+  .hero-band h2 .accent{color:var(--gold-400);}
+  .hero-band .tagline{
+    margin:0 0 14px;
+    color:var(--gold-300);
+    font-style:italic;
+    font-size:0.95rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .hero-band p.desc{
+    margin:0 0 18px;
+    color:var(--muted);
+    line-height:1.6;
+    font-size:0.92rem;
+    text-align:justify;
+  }
+  .hero-band p.desc b{color:var(--gold-400);font-weight:700;}
+
+  .icon-row{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    row-gap:20px;
+    column-gap:6px;
+    text-align:center;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .icon-row .item{display:flex;flex-direction:column;align-items:center;gap:9px;}
+  .icon-row .glyph{
+    width:34px;height:34px;
+    color:var(--gold-400);
+  }
+  .icon-row .divider{width:1px;height:100%;}
+  .icon-row .label{
+    font-size:0.66rem;
+    color:#e7ecf5;
+    font-weight:600;
+    letter-spacing:0.2px;
+  }
+
+  /* ===== Courses Grid ===== */
+  .courses-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    margin-bottom:0;
+  }
+  @media (min-width:640px){
+    .courses-grid{grid-template-columns:repeat(2, 1fr);}
+  }
+
+  .course-card{
+    background:#fff;
+    border:1px solid #e5dcc8;
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:all .3s ease;
+    box-shadow:0 4px 12px rgba(10,21,38,0.08);
+  }
+  .course-card:hover{
+    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+    transform:translateY(-4px);
+  }
+
+  .course-thumb{
+    position:relative;
+    width:100%;
+    height:180px;
+    overflow:hidden;
+    background:linear-gradient(135deg, #0a1526 0%, #0e1d36 100%);
+  }
+  .course-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .3s ease;
+  }
+  .course-card:hover .course-thumb img{
+    transform:scale(1.05);
+  }
+
+  .course-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(10,21,38,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transition:opacity .3s ease;
+  }
+  .course-card:hover .course-overlay{
+    opacity:1;
+  }
+
+  .btn-ver-curso{
+    padding:10px 18px;
+    background:var(--gold-400);
+    color:var(--navy-900);
+    border-radius:6px;
+    font-weight:700;
+    font-size:0.85rem;
+    transition:all .25s ease;
+  }
+  .btn-ver-curso:hover{
+    background:var(--gold-500);
+    transform:scale(1.05);
+  }
+
+  .course-card .body{
+    padding:16px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .course-card h3{
+    margin:0 0 8px;
+    font-size:0.95rem;
+    color:var(--navy-900);
+    font-weight:700;
+    line-height:1.3;
+  }
+  .course-card .meta-row{
+    margin:0 0 12px;
+    font-size:0.8rem;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .course-card p{
+    margin:0 0 10px;
+    font-size:0.85rem;
+    color:#556074;
+    line-height:1.5;
+    flex:1;
+  }
+  .btn-ver{
+    display:inline-block;
+    align-self:flex-start;
+    padding:8px 14px;
+    background:var(--navy-900);
+    color:var(--gold-400);
+    border-radius:6px;
+    font-size:0.8rem;
+    font-weight:700;
+    transition:all .25s ease;
+    border:1px solid var(--gold-400);
+  }
+  .btn-ver:hover{
+    background:var(--gold-400);
+    color:var(--navy-900);
+  }
+
+  /* ===== Login Panel ===== */
+  .painel-login,
+  .painel-aluno{
+    border-color:var(--gold-500);
+    background:linear-gradient(135deg, rgba(10,21,38,0.8) 0%, rgba(14,29,54,0.9) 100%);
+  }
+
+  .painel-aluno{
+    border-color:var(--gold-400);
+    background:linear-gradient(135deg, rgba(10,29,45,0.9) 0%, rgba(14,29,54,0.95) 100%);
+  }
+
+  /* ===== Footer ===== */
+  footer.site{
+    background:var(--navy-900);
+    color:#fff;
+    padding:20px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  footer.site .socials{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    margin-bottom:12px;
+  }
+  footer.site .socials a{
+    width:32px;height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(221,165,74,0.15);
+    border-radius:50%;
+    transition:all .25s ease;
+  }
+  footer.site .socials a:hover{
+    background:var(--gold-400);
+  }
+  footer.site .socials svg{
+    width:16px;height:16px;
+    color:var(--gold-400);
+  }
+  footer.site .socials a:hover svg{
+    color:var(--navy-900);
+  }
+  footer.site p{margin:0 0 8px;font-size:0.9rem;color:var(--muted);}
+  footer.site .legal{display:flex;justify-content:center;gap:8px;font-size:0.8rem;flex-wrap:wrap;}
+  footer.site .legal a{color:var(--gold-400);transition:color .25s;}
+  footer.site .legal a:hover{color:#fff;}
+
+  nav.mobile-nav{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:#fff;
+    display:flex;
+    justify-content:space-around;
+    border-top:1px solid #ecdfc0;
+    z-index:104;
+    height:78px;
+  }
+  nav.mobile-nav a{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    color:#556074;
+    font-weight:600;
+    font-size:0.62rem;
+    transition:color .25s;
+  }
+  nav.mobile-nav a:hover{color:var(--gold-500);}
+  nav.mobile-nav a.active{color:var(--gold-500);}
+  nav.mobile-nav svg{width:22px;height:22px;}
+</style>
+<style>
+  .legal-content h2{font-family:'Playfair Display', Georgia, serif;color:var(--gold-400);font-size:1.15rem;margin:24px 0 10px;}
+  .legal-content h2:first-child{margin-top:0;}
+  .legal-content p{color:var(--muted);line-height:1.7;font-size:0.92rem;margin:0 0 12px;}
+  .legal-content ul{color:var(--muted);line-height:1.7;font-size:0.92rem;padding-left:20px;margin:0 0 12px;}
+  .legal-header h1{margin:0 0 6px;font-family:'Playfair Display', Georgia, serif;color:#fff;font-size:1.5rem;}
+  .legal-header p{margin:0;color:var(--gold-300);font-size:0.85rem;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <div class="crest"><img src="assets/logo.png" alt="Karlyon Enterprise S.A."></div>
+    <div class="name-block">
+      <h1>KARLYON ENTERPRISE S.A.</h1>
+      <p>ENTERPRISE SOLUTIONS &bull; ACADEMY APPLIED</p>
+    </div>
+  </div>
+  <button class="hamburger" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-backdrop" id="navBackdrop"></div>
+<nav class="nav-menu" id="navMenu">
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="academia.html">Cursos</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
+    <li><a href="artigos.html">Artigos</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="contactos.html">Contactos</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="card legal-header">
+    <h1>Política de Privacidade</h1>
+    <p>Última atualização: Julho de 2026</p>
+  </section>
+  <section class="card legal-content">
+
+    <h2>1. Dados que Recolhemos</h2>
+    <p>A Karlyon Enterprise S.A. recolhe dados fornecidos diretamente por si, como nome, contacto de e-mail e telefone, quando preenche formulários de contacto, inscrição em cursos ou subscrição de conteúdos.</p>
+
+    <h2>2. Finalidade do Tratamento</h2>
+    <p>Os dados recolhidos são utilizados para responder aos seus pedidos, gerir inscrições em cursos e serviços, e comunicar novidades relevantes sobre a Académica, a Agência e a Editora Karlyon.</p>
+
+    <h2>3. Partilha de Dados</h2>
+    <p>Não vendemos nem partilhamos os seus dados pessoais com terceiros para fins de marketing sem o seu consentimento explícito.</p>
+
+    <h2>4. Segurança</h2>
+    <p>Adotamos medidas técnicas e organizativas razoáveis para proteger os seus dados contra acesso não autorizado, perda ou alteração.</p>
+
+    <h2>5. Os Seus Direitos</h2>
+    <p>Pode solicitar a qualquer momento o acesso, correção ou eliminação dos seus dados pessoais, através da nossa página de Contactos.</p>
+
+    <h2>6. Contacto</h2>
+    <p>Para questões relacionadas com privacidade, contacte-nos através da página de Contactos do site.</p>
+
+  </section>
+</main>
+
+<footer class="site">
+  <div class="socials">
+    <a class="s-linkedin" href="https://www.linkedin.com/company/karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.9 3.9 6 2.5 6S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5ZM.24 8.24h4.5V23H.24V8.24ZM8.5 8.24h4.3v2h.06c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.4 3 5.4 6.9V23h-4.5v-6.4c0-1.5 0-3.5-2.1-3.5-2.2 0-2.5 1.7-2.5 3.4V23H8.5V8.24Z"/></svg>
+    </a>
+    <a class="s-instagram" href="https://www.instagram.com/karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+    </a>
+    <a class="s-whatsapp" href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1a13 13 0 0 1-5.9-4.2 6.7 6.7 0 0 1-1.4-3.9c0-1 .5-1.7.7-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.7.8 1.8.1.2.1.4 0 .6-.1.2-.1.3-.3.5l-.4.5c-.1.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.7 1.6.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.7.8c.2.1.4.2.5.3.1.2.1.9-.1 1.5Z"/></svg>
+    </a>
+    <a class="s-youtube" href="https://www.youtube.com/@Karlyonenterprise_Oficial" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg>
+    </a>
+  </div>
+  <p>© 2026 Karlyon Enterprise S.A. — Todos os direitos reservados.</p>
+  <div class="legal">
+    <a href="privacidade.html">Privacidade</a> &bull;
+    <a href="termos.html">Termos de Uso</a> &bull;
+    <a href="cookies.html">Cookies</a>
+  </div>
+</footer>
+
+<nav class="mobile-nav">
+  <a href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.5"/></svg>
+    Início
+  </a>
+  <a href="academia.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 5 20 12l-8 7-8-7 8-7Z"/></svg>
+    Cursos
+  </a>
+  <a href="servicos.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7" width="17" height="10" rx="2"/></svg>
+    Serviços
+  </a>
+  <a href="sobre.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h10"/></svg>
+    Sobre
+  </a>
+  <a href="contactos.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5c0-1 .8-2 2-2h2l2 5-2 1.4a11 11 0 0 0 5.6 5.6L15 13l5 2v2c0 1.1-1 2-2 2C10.5 19 5 13.5 5 7c0-.2 0-.5-1-2Z"/></svg>
+    Contactos
+  </a>
+</nav>
+
+<script>
+  // Menu hamburger
+  const menuToggle = document.getElementById('menuToggle');
+  const navBackdrop = document.getElementById('navBackdrop');
+
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded','false');
+  }
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('menu-open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  navBackdrop.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+</body>
+</html>

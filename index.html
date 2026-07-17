@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karlyon Enterprise S.A. — CPD, Académica, Agência, Editora, Consultoria</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0a1526;
+    --navy-800:#0e1d36;
+    --gold-500:#dda54a;
+    --gold-400:#e9bd6c;
+    --gold-300:#f2d193;
+    --orange-600:#e8790f;
+    --cream:#fdf9f0;
+    --ink:#0a1526;
+    --muted:#b7c1d4;
+    --line:rgba(221,165,74,0.38);
+    --radius-lg:18px;
+    --radius-md:12px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    color:var(--ink);
+    padding-bottom:78px;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  svg{display:block;}
+
+  /* ===== Header ===== */
+  header.site{
+    background:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 14px;
+    border-bottom:1px solid #ecdfc0;
+    gap:10px;
+    position:relative;
+    z-index:105;
+  }
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand .crest{
+    width:46px;height:46px;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand .crest img{
+    width:100%;height:100%;object-fit:contain;
+  }
+  .brand .name-block h1{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:0.98rem;
+    letter-spacing:0.2px;
+    color:var(--navy-900);
+    font-weight:800;
+    line-height:1.15;
+    white-space:nowrap;
+  }
+  .brand .name-block p{
+    margin:3px 0 0;
+    font-size:0.52rem;
+    letter-spacing:1.2px;
+    color:var(--orange-600);
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .hamburger{
+    width:40px;height:40px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    background:transparent;border:none;cursor:pointer;flex:0 0 auto;
+    position:relative;z-index:110;
+  }
+  .hamburger span{
+    width:24px;height:2.5px;background:var(--navy-900);border-radius:2px;
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  body.menu-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+  body.menu-open .hamburger span:nth-child(2){opacity:0;}
+  body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+  /* ===== Nav menu (hamburger dropdown) ===== */
+  .nav-menu{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:var(--navy-900);
+    padding-top:78px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+    z-index:100;
+  }
+  body.menu-open .nav-menu{max-height:600px;}
+  .nav-menu ul{list-style:none;margin:0;padding:8px 20px 24px;}
+  .nav-menu li{border-bottom:1px solid var(--line);}
+  .nav-menu a{
+    display:block;
+    padding:14px 4px;
+    color:#fff;
+    font-weight:600;
+    font-size:0.98rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .nav-menu a:hover{color:var(--gold-400);}
+  .nav-backdrop{
+    position:fixed;inset:0;
+    background:rgba(10,21,38,0.4);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:90;
+  }
+  body.menu-open .nav-backdrop{opacity:1;pointer-events:auto;}
+
+  main{max-width:640px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px;}
+
+  .card{
+    background:var(--navy-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:22px 20px;
+    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+  }
+
+  /* ===== Hero (full-bleed band, not a card) ===== */
+  .hero-band{
+    background:var(--navy-900);
+    width:100%;
+  }
+  .hero-band .hero-inner{
+    max-width:640px;
+    margin:0 auto;
+    padding:26px 20px 28px;
+  }
+  .hero-band h2{
+    margin:0 0 4px;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.5rem;
+    color:#fff;
+    font-weight:800;
+    line-height:1.2;
+  }
+  .hero-band h2 .accent{color:var(--gold-400);}
+  .hero-band .tagline{
+    margin:0 0 14px;
+    color:var(--gold-300);
+    font-style:italic;
+    font-size:0.95rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .hero-band p.desc{
+    margin:0 0 18px;
+    color:var(--muted);
+    line-height:1.6;
+    font-size:0.92rem;
+    text-align:justify;
+  }
+  .hero-band p.desc b{color:var(--gold-400);font-weight:700;}
+
+  .icon-row{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    row-gap:20px;
+    column-gap:6px;
+    text-align:center;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .icon-row .item{display:flex;flex-direction:column;align-items:center;gap:9px;}
+  .icon-row .glyph{
+    width:34px;height:34px;
+    color:var(--gold-400);
+  }
+  .icon-row .divider{width:1px;height:100%;}
+  .icon-row .label{
+    font-size:0.66rem;
+    color:#e7ecf5;
+    font-weight:600;
+    letter-spacing:0.2px;
+  }
+
+  /* ===== Team photo ===== */
+  .team-card{padding:8px;}
+  .team-card img{
+    width:100%;
+    border-radius:calc(var(--radius-lg) - 6px);
+    display:block;
+    object-fit:cover;
+    aspect-ratio:16/10;
+  }
+
+  /* ===== Course cards ===== */
+  .courses-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .course-card{
+    background:var(--navy-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 6px 16px rgba(10,21,38,0.15);
+  }
+  .course-card .thumb-frame{
+    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
+    padding:4px;
+  }
+  .course-card .thumb{
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+    border-radius:calc(var(--radius-md) - 6px);
+    display:block;
+  }
+  .course-card .body{padding:10px 10px 12px;display:flex;flex-direction:column;gap:5px;flex:1;}
+  .course-card h3{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:0.8rem;
+    color:#fff;
+    font-weight:800;
+    line-height:1.22;
+  }
+  .course-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:0.66rem;
+    line-height:1.4;
+    flex:1;
+    text-align:justify;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .meta-row{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    font-size:0.6rem;
+    color:var(--gold-300);
+    margin:1px 0 3px;
+    font-weight:600;
+  }
+  .meta-row span{display:flex;align-items:center;gap:3px;}
+  .meta-row svg{width:11px;height:11px;flex:0 0 auto;}
+  .btn-ver{
+    align-self:flex-start;
+    background:linear-gradient(135deg, var(--orange-600), var(--gold-500));
+    color:var(--navy-900);
+    font-weight:800;
+    font-size:0.66rem;
+    padding:6px 12px;
+    border-radius:7px;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+  }
+
+  /* ===== Artigos (carousel) ===== */
+  .articles-section{padding:2px 0 4px;}
+  .articles-section .section-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin:0 2px 12px;
+  }
+  .articles-section .section-head h3{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.12rem;
+    font-weight:800;
+    color:var(--navy-900);
+  }
+  .articles-section .section-head span{
+    font-size:0.7rem;
+    color:#8a7a55;
+    font-weight:600;
+    letter-spacing:0.3px;
+  }
+  .articles-carousel{
+    overflow:hidden;
+    position:relative;
+    margin:0 -16px;
+    padding:2px 0 10px;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+    mask-image:linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .articles-track{
+    display:flex;
+    gap:14px;
+    width:max-content;
+    padding-left:16px;
+    animation:articles-scroll 34s linear infinite;
+  }
+  .articles-carousel:hover .articles-track,
+  .articles-carousel:active .articles-track{
+    animation-play-state:paused;
+  }
+  @keyframes articles-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .article-card{
+    flex:0 0 auto;
+    width:250px;
+    background:var(--navy-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+  }
+  .article-card .thumb-frame{
+    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
+    padding:6px;
+  }
+  .article-card .thumb{
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+    border-radius:calc(var(--radius-md) - 4px);
+    display:block;
+  }
+  .article-card .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .article-card .tag{
+    align-self:flex-start;
+    font-size:0.64rem;
+    font-weight:700;
+    letter-spacing:0.4px;
+    text-transform:uppercase;
+    color:var(--navy-900);
+    background:linear-gradient(135deg, var(--gold-400), var(--gold-300));
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .article-card h4{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:0.98rem;
+    color:#fff;
+    font-weight:800;
+    line-height:1.28;
+  }
+  .article-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:0.79rem;
+    line-height:1.5;
+    flex:1;
+    text-align:justify;
+  }
+  .article-card .read-row{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:2px;
+  }
+  .article-card .read-row .date{
+    font-size:0.68rem;
+    color:var(--gold-300);
+    font-weight:600;
+  }
+  .article-card .read-more{
+    display:flex;align-items:center;gap:5px;
+    font-size:0.75rem;
+    font-weight:800;
+    color:var(--gold-400);
+  }
+  .article-card .read-more svg{width:14px;height:14px;}
+  /* ===== Video section ===== */
+  .video-card h3{
+    margin:0 0 14px;
+    text-align:center;
+    color:var(--gold-400);
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.12rem;
+    font-weight:800;
+  }
+  .video-frame{
+    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .video-frame .yt-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 14px;
+    font-size:0.7rem;
+    color:#dfe6f2;
+    gap:8px;
+  }
+  .video-frame .yt-topbar .left{display:flex;align-items:center;gap:8px;min-width:0;}
+  .video-frame .yt-topbar .left span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .video-frame .yt-topbar .k-badge{
+    width:20px;height:20px;border-radius:50%;
+    overflow:hidden;flex:0 0 auto;
+  }
+  .video-frame .yt-topbar .k-badge img{width:100%;height:100%;object-fit:cover;}
+  .video-frame .yt-topbar .right{display:flex;gap:12px;color:#c9d3e4;flex:0 0 auto;}
+  .video-frame .yt-topbar .right span{display:flex;align-items:center;gap:4px;}
+  .video-frame .yt-topbar svg{width:14px;height:14px;}
+  .video-frame .stage{
+    position:relative;
+    aspect-ratio:16/9;
+    display:flex;align-items:center;justify-content:center;
+    background:#0a1526;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .video-frame .stage iframe{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+    border:0;
+  }
+  .video-frame .stage .thumb-bg{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .video-frame .stage .play-btn{
+    position:relative;
+    z-index:1;
+    width:56px;height:56px;border-radius:50%;
+    background:#ff0000;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    box-shadow:0 4px 14px rgba(0,0,0,0.4);
+  }
+  .video-frame .stage .play-btn svg{width:22px;height:22px;margin-left:3px;}
+  .video-frame .caption{
+    text-align:center;
+    padding:12px;
+    font-size:0.85rem;
+    color:#dfe6f2;
+    font-weight:700;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .video-frame .caption svg{width:18px;height:18px;color:#ff0000;}
+
+  /* ===== Footer ===== */
+  footer.site{
+    background:var(--navy-900);
+    padding:26px 20px 20px;
+    text-align:center;
+    margin-top:6px;
+  }
+  .socials{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .socials a{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+  }
+  .socials svg{width:18px;height:18px;}
+  .s-linkedin{background:#0a66c2;}
+  .s-facebook{background:#1877f2;}
+  .s-instagram{background:radial-gradient(circle at 30% 30%, #fdf497, #fd5949 45%, #d6249f 70%, #285AEB);}
+  .s-tiktok{background:#010101;}
+  .s-whatsapp{background:#25D366;}
+  .s-youtube{background:#ff0000;}
+  footer.site p{
+    margin:0 0 8px;
+    color:#aeb8cc;
+    font-size:0.78rem;
+  }
+  footer.site .legal a{
+    color:var(--gold-400);
+    font-size:0.78rem;
+    margin:0 6px;
+  }
+
+  /* ===== Bottom mobile nav ===== */
+  .whatsapp-float{
+    position:fixed;
+    right:16px;
+    bottom:94px;
+    width:52px;height:52px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);
+    z-index:120;
+    color:#fff;
+  }
+  .whatsapp-float svg{width:28px;height:28px;}
+
+  nav.mobile-nav{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:#fff;
+    border-top:1px solid #e7e2d3;
+    display:flex;
+    justify-content:space-around;
+    padding:8px 4px 10px;
+    z-index:50;
+  }
+  nav.mobile-nav a{
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    font-size:0.62rem;
+    color:#556074;
+    font-weight:600;
+  }
+  nav.mobile-nav a.active{color:var(--gold-500);}
+  nav.mobile-nav svg{width:22px;height:22px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <div class="crest"><img src="assets/logo.png" alt="Karlyon Enterprise S.A."></div>
+    <div class="name-block">
+      <h1>KARLYON ENTERPRISE S.A.</h1>
+      <p>ENTERPRISE SOLUTIONS &bull; ACADEMY APPLIED</p>
+    </div>
+  </div>
+  <button class="hamburger" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-backdrop" id="navBackdrop"></div>
+<nav class="nav-menu" id="navMenu">
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="academia.html">Cursos</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
+    <li><a href="artigos.html">Artigos</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="contactos.html">Contactos</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- Team photo -->
+  <section class="card team-card">
+    <img src="assets/team.png" alt="Equipa Karlyon Enterprise S.A.">
+  </section>
+
+  <!-- Course cards -->
+  <section class="courses-grid">
+
+    <div class="course-card">
+      <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Elaboração de Projetos de Pesquisa"></div>
+      <div class="body">
+        <h3>Elaboração de Projetos de Pesquisa</h3>
+        <p>Metodologia, estrutura e orientação para projetos académicos e científicos.</p>
+        <div class="meta-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 20h 00m</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Intermediário</span>
+        </div>
+        <button class="btn-ver">Ver Curso</button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=600&q=80" alt="IAs e Softwares Educativos"></div>
+      <div class="body">
+        <h3>IAs e Softwares Educativos</h3>
+        <p>Uso de Inteligência Artificial e softwares educativos para potencializar o aprendizado e a produtividade.</p>
+        <div class="meta-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 15h 00m</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Intermediário</span>
+        </div>
+        <button class="btn-ver">Ver Curso</button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80" alt="Empreendedorismo e Plano de Negócio"></div>
+      <div class="body">
+        <h3>Empreendedorismo e Plano de Negócio</h3>
+        <p>Aprenda a criar, estruturar e gerir o seu negócio com estratégias práticas e foco em resultados.</p>
+        <div class="meta-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 18h 30m</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Intermediário</span>
+        </div>
+        <button class="btn-ver">Ver Curso</button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&w=600&q=80" alt="Preparação para o Mercado de Emprego"></div>
+      <div class="body">
+        <h3>Preparação para o Mercado de Emprego</h3>
+        <p>Desenvolva competências profissionais, elabore seu CV, prepare-se para entrevistas e conquiste oportunidades.</p>
+        <div class="meta-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 12h 00m</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V13M10 20V9M16 20V5M22 20H2"/></svg> Iniciante</span>
+        </div>
+        <button class="btn-ver">Ver Curso</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Artigos -->
+  <section class="articles-section" id="artigos">
+    <div class="section-head">
+      <h3>Artigos</h3>
+      <a href="artigos.html" style="font-size:0.7rem;color:var(--orange-600);font-weight:700;">Ver todos &rsaquo;</a>
+    </div>
+    <div class="articles-carousel">
+      <div class="articles-track">
+
+      <a class="article-card" href="artigo-neurociencia-habitos.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=80" alt="Neurociência dos hábitos"></div>
+        <div class="body">
+          <span class="tag">Neurociência</span>
+          <h4>Como o cérebro constrói hábitos duradouros</h4>
+          <p>Entenda os circuitos neuronais por trás da repetição e como usar esse conhecimento para criar rotinas mais saudáveis.</p>
+          <div class="read-row">
+            <span class="date">12 Jul 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" href="artigo-saude-sono.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80" alt="Saúde e sono"></div>
+        <div class="body">
+          <span class="tag">Saúde</span>
+          <h4>O sono como pilar da saúde mental e física</h4>
+          <p>Descubra por que dormir bem influencia diretamente a memória, a imunidade e o equilíbrio emocional.</p>
+          <div class="read-row">
+            <span class="date">05 Jul 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" href="artigo-filosofia-tempo.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=600&q=80" alt="Filosofia do tempo"></div>
+        <div class="body">
+          <span class="tag">Filosofia</span>
+          <h4>O que a filosofia nos ensina sobre o tempo</h4>
+          <p>Uma reflexão sobre a percepção humana do tempo, entre o instante presente e a busca pelo sentido.</p>
+          <div class="read-row">
+            <span class="date">28 Jun 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" href="artigo-psicologia-foco.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=600&q=80" alt="Psicologia do foco"></div>
+        <div class="body">
+          <span class="tag">Psicologia</span>
+          <h4>Foco na era da distração constante</h4>
+          <p>Estratégias psicológicas para recuperar a atenção plena num mundo repleto de estímulos.</p>
+          <div class="read-row">
+            <span class="date">19 Jun 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" href="artigo-artes-criatividade.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80" alt="Artes e criatividade"></div>
+        <div class="body">
+          <span class="tag">Artes</span>
+          <h4>A criatividade como exercício diário da mente</h4>
+          <p>Como a prática artística regular fortalece a saúde cognitiva e amplia a capacidade de resolver problemas.</p>
+          <div class="read-row">
+            <span class="date">10 Jun 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+
+      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-neurociencia-habitos.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=80" alt="Neurociência dos hábitos"></div>
+        <div class="body">
+          <span class="tag">Neurociência</span>
+          <h4>Como o cérebro constrói hábitos duradouros</h4>
+          <p>Entenda os circuitos neuronais por trás da repetição e como usar esse conhecimento para criar rotinas mais saudáveis.</p>
+          <div class="read-row">
+            <span class="date">12 Jul 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-saude-sono.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80" alt="Saúde e sono"></div>
+        <div class="body">
+          <span class="tag">Saúde</span>
+          <h4>O sono como pilar da saúde mental e física</h4>
+          <p>Descubra por que dormir bem influencia diretamente a memória, a imunidade e o equilíbrio emocional.</p>
+          <div class="read-row">
+            <span class="date">05 Jul 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-filosofia-tempo.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=600&q=80" alt="Filosofia do tempo"></div>
+        <div class="body">
+          <span class="tag">Filosofia</span>
+          <h4>O que a filosofia nos ensina sobre o tempo</h4>
+          <p>Uma reflexão sobre a percepção humana do tempo, entre o instante presente e a busca pelo sentido.</p>
+          <div class="read-row">
+            <span class="date">28 Jun 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-psicologia-foco.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=600&q=80" alt="Psicologia do foco"></div>
+        <div class="body">
+          <span class="tag">Psicologia</span>
+          <h4>Foco na era da distração constante</h4>
+          <p>Estratégias psicológicas para recuperar a atenção plena num mundo repleto de estímulos.</p>
+          <div class="read-row">
+            <span class="date">19 Jun 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" aria-hidden="true" tabindex="-1" href="artigo-artes-criatividade.html">
+        <div class="thumb-frame"><img class="thumb" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80" alt="Artes e criatividade"></div>
+        <div class="body">
+          <span class="tag">Artes</span>
+          <h4>A criatividade como exercício diário da mente</h4>
+          <p>Como a prática artística regular fortalece a saúde cognitiva e amplia a capacidade de resolver problemas.</p>
+          <div class="read-row">
+            <span class="date">10 Jun 2026</span>
+            <span class="read-more">Ler artigo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section class="card video-card">
+    <h3>Conheça a Karlyon Enterprise S.A.</h3>
+    <div class="video-frame">
+      <div class="yt-topbar">
+        <div class="left">
+          <div class="k-badge"><img src="assets/logo.png" alt="Karlyon"></div>
+          <span>Karlyon Enterprise S.A. - Apresentação Institucional</span>
+        </div>
+        <div class="right">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Assistir m...</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="m8 10.8 8-4.6M8 13.2l8 4.6"/></svg> Compartilhar</span>
+        </div>
+      </div>
+      <div class="stage" id="videoStage" onclick="playInstitutionalVideo()" role="button" tabindex="0" aria-label="Reproduzir vídeo institucional">
+        <img class="thumb-bg" src="https://img.youtube.com/vi/kXjH1491mEY/maxresdefault.jpg" alt="Vídeo institucional Karlyon Enterprise S.A.">
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="caption"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg> Vídeo institucional</div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="socials">
+    <a class="s-facebook" href="https://www.facebook.com/Karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg>
+    </a>
+    <a class="s-instagram" href="https://www.instagram.com/karlyonenterprise_oficial" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+    </a>
+    <a class="s-tiktok" href="https://www.tiktok.com/@karlyonenterprise" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.86-1.4-2.07-1.4-3.32h-3.13v13.4c0 1.55-1.26 2.8-2.8 2.8a2.8 2.8 0 0 1-2.8-2.8 2.8 2.8 0 0 1 2.8-2.8c.29 0 .57.04.83.13v-3.18a6 6 0 0 0-.83-.06 5.93 5.93 0 0 0-5.93 5.93 5.93 5.93 0 0 0 5.93 5.93 5.93 5.93 0 0 0 5.93-5.93V9.35a8.4 8.4 0 0 0 4.9 1.57V7.79a5.4 5.4 0 0 1-3.5-1.97Z"/></svg>
+    </a>
+    <a class="s-youtube" href="https://www.youtube.com/@Karlyonenterprise_Oficial" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg>
+    </a>
+  </div>
+  <p>© 2026 Karlyon Enterprise S.A. — Todos os direitos reservados.</p>
+  <div class="legal">
+    <a href="privacidade.html">Privacidade</a> &bull;
+    <a href="termos.html">Termos de Uso</a> &bull;
+    <a href="cookies.html">Cookies</a>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://whatsapp.com/channel/0029Vb86W5S2Jl8DGL4PHh2R" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1a13 13 0 0 1-5.9-4.2 6.7 6.7 0 0 1-1.4-3.9c0-1 .5-1.7.7-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.7.8 1.8.1.2.1.4 0 .6-.1.2-.1.3-.3.5l-.4.5c-.1.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.7 1.6.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.7.8c.2.1.4.2.5.3.1.2.1.9-.1 1.5Z"/></svg>
+</a>
+
+<nav class="mobile-nav">
+  <a href="index.html" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.5"/></svg>
+    Início
+  </a>
+  <a href="academia.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 5 20 12l-8 7-8-7 8-7Z"/></svg>
+    Cursos
+  </a>
+  <a href="servicos.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7" width="17" height="10" rx="2"/></svg>
+    Serviços
+  </a>
+  <a href="sobre.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h10"/></svg>
+    Sobre
+  </a>
+  <a href="contactos.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5c0-1 .8-2 2-2h2l2 5-2 1.4a11 11 0 0 0 5.6 5.6L15 13l5 2v2c0 1.1-1 2-2 2C10.5 19 5 13.5 5 7c0-.2 0-.5-1-2Z"/></svg>
+    Contactos
+  </a>
+</nav>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navBackdrop = document.getElementById('navBackdrop');
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded','false');
+  }
+  menuToggle.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('menu-open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navBackdrop.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', closeMenu));
+
+  function playInstitutionalVideo(){
+    const stage = document.getElementById('videoStage');
+    stage.innerHTML = '<iframe src="https://www.youtube.com/embed/kXjH1491mEY?autoplay=1&rel=0" title="Vídeo institucional Karlyon Enterprise S.A." allow="accelerate-motion; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    stage.onclick = null;
+    stage.style.cursor = 'default';
+  }
+</script>
+</body>
+</html>

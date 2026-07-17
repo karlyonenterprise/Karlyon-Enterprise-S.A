@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serviços — Karlyon Enterprise S.A.</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0a1526;
+    --navy-800:#0e1d36;
+    --gold-500:#dda54a;
+    --gold-400:#e9bd6c;
+    --gold-300:#f2d193;
+    --orange-600:#e8790f;
+    --cream:#fdf9f0;
+    --ink:#0a1526;
+    --muted:#b7c1d4;
+    --line:rgba(221,165,74,0.38);
+    --radius-lg:18px;
+    --radius-md:12px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    font-family:'Inter', system-ui, -apple-system, sans-serif;
+    color:var(--ink);
+    padding-bottom:78px;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  svg{display:block;}
+
+  /* ===== Header ===== */
+  header.site{
+    background:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 14px;
+    border-bottom:1px solid #ecdfc0;
+    gap:10px;
+    position:relative;
+    z-index:105;
+  }
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand .crest{
+    width:46px;height:46px;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand .crest img{
+    width:100%;height:100%;object-fit:contain;
+  }
+  .brand .name-block h1{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:0.98rem;
+    letter-spacing:0.2px;
+    color:var(--navy-900);
+    font-weight:800;
+    line-height:1.15;
+    white-space:nowrap;
+  }
+  .brand .name-block p{
+    margin:3px 0 0;
+    font-size:0.52rem;
+    letter-spacing:1.2px;
+    color:var(--orange-600);
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .hamburger{
+    width:40px;height:40px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    background:transparent;border:none;cursor:pointer;flex:0 0 auto;
+    position:relative;z-index:110;
+  }
+  .hamburger span{
+    width:24px;height:2.5px;background:var(--navy-900);border-radius:2px;
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  body.menu-open .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+  body.menu-open .hamburger span:nth-child(2){opacity:0;}
+  body.menu-open .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+  /* ===== Nav menu (hamburger dropdown) ===== */
+  .nav-menu{
+    position:fixed;
+    top:0;left:0;right:0;
+    background:var(--navy-900);
+    padding-top:78px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+    z-index:100;
+  }
+  body.menu-open .nav-menu{max-height:600px;}
+  .nav-menu ul{list-style:none;margin:0;padding:8px 20px 24px;}
+  .nav-menu li{border-bottom:1px solid var(--line);}
+  .nav-menu a{
+    display:block;
+    padding:14px 4px;
+    color:#fff;
+    font-weight:600;
+    font-size:0.98rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .nav-menu a:hover{color:var(--gold-400);}
+  .nav-backdrop{
+    position:fixed;inset:0;
+    background:rgba(10,21,38,0.4);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:90;
+  }
+  body.menu-open .nav-backdrop{opacity:1;pointer-events:auto;}
+
+  main{max-width:640px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px;}
+
+  .card{
+    background:var(--navy-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    padding:22px 20px;
+    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+  }
+
+  /* ===== Hero (full-bleed band, not a card) ===== */
+  .hero-band{
+    background:var(--navy-900);
+    width:100%;
+  }
+  .hero-band .hero-inner{
+    max-width:640px;
+    margin:0 auto;
+    padding:26px 20px 28px;
+  }
+  .hero-band h2{
+    margin:0 0 4px;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.5rem;
+    color:#fff;
+    font-weight:800;
+    line-height:1.2;
+  }
+  .hero-band h2 .accent{color:var(--gold-400);}
+  .hero-band .tagline{
+    margin:0 0 14px;
+    color:var(--gold-300);
+    font-style:italic;
+    font-size:0.95rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .hero-band p.desc{
+    margin:0 0 18px;
+    color:var(--muted);
+    line-height:1.6;
+    font-size:0.92rem;
+    text-align:justify;
+  }
+  .hero-band p.desc b{color:var(--gold-400);font-weight:700;}
+
+  .icon-row{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    row-gap:20px;
+    column-gap:6px;
+    text-align:center;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .icon-row .item{display:flex;flex-direction:column;align-items:center;gap:9px;}
+  .icon-row .glyph{
+    width:34px;height:34px;
+    color:var(--gold-400);
+  }
+  .icon-row .divider{width:1px;height:100%;}
+  .icon-row .label{
+    font-size:0.66rem;
+    color:#e7ecf5;
+    font-weight:600;
+    letter-spacing:0.2px;
+  }
+
+  /* ===== Team photo ===== */
+  .team-card{padding:8px;}
+  .team-card img{
+    width:100%;
+    border-radius:calc(var(--radius-lg) - 6px);
+    display:block;
+    object-fit:cover;
+    aspect-ratio:16/10;
+  }
+
+  /* ===== Course cards ===== */
+  .courses-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media (max-width:520px){
+    .courses-grid{grid-template-columns:1fr;}
+  }
+  .course-card{
+    background:var(--navy-900);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 8px 24px rgba(10,21,38,0.15);
+  }
+  .course-card .thumb{
+    width:100%;
+    aspect-ratio:16/10;
+    object-fit:cover;
+  }
+  .course-card .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .course-card h3{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1rem;
+    color:#fff;
+    font-weight:800;
+    line-height:1.28;
+  }
+  .course-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:0.79rem;
+    line-height:1.5;
+    flex:1;
+    text-align:justify;
+  }
+  .meta-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:0.73rem;
+    color:var(--gold-300);
+    margin:2px 0 6px;
+    font-weight:600;
+  }
+  .meta-row span{display:flex;align-items:center;gap:5px;}
+  .meta-row svg{width:14px;height:14px;flex:0 0 auto;}
+  .btn-ver{
+    align-self:flex-start;
+    background:linear-gradient(135deg, var(--orange-600), var(--gold-500));
+    color:var(--navy-900);
+    font-weight:800;
+    font-size:0.78rem;
+    padding:9px 18px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+  }
+
+  /* ===== Video section ===== */
+  .video-card h3{
+    margin:0 0 14px;
+    text-align:center;
+    color:var(--gold-400);
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.12rem;
+    font-weight:800;
+  }
+  .video-frame{
+    background:linear-gradient(160deg,#0c1730,#132845 60%,#0c1730);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .video-frame .yt-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 14px;
+    font-size:0.7rem;
+    color:#dfe6f2;
+    gap:8px;
+  }
+  .video-frame .yt-topbar .left{display:flex;align-items:center;gap:8px;min-width:0;}
+  .video-frame .yt-topbar .left span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .video-frame .yt-topbar .k-badge{
+    width:20px;height:20px;border-radius:50%;
+    overflow:hidden;flex:0 0 auto;
+  }
+  .video-frame .yt-topbar .k-badge img{width:100%;height:100%;object-fit:cover;}
+  .video-frame .yt-topbar .right{display:flex;gap:12px;color:#c9d3e4;flex:0 0 auto;}
+  .video-frame .yt-topbar .right span{display:flex;align-items:center;gap:4px;}
+  .video-frame .yt-topbar svg{width:14px;height:14px;}
+  .video-frame .stage{
+    position:relative;
+    aspect-ratio:16/9;
+    display:flex;align-items:center;justify-content:center;
+    background:#0a1526;
+    overflow:hidden;
+  }
+  .video-frame .stage .thumb-bg{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+  .video-frame .stage .play-btn{
+    position:relative;
+    z-index:1;
+    width:56px;height:56px;border-radius:50%;
+    background:#ff0000;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    box-shadow:0 4px 14px rgba(0,0,0,0.4);
+  }
+  .video-frame .stage .play-btn svg{width:22px;height:22px;margin-left:3px;}
+  .video-frame .caption{
+    text-align:center;
+    padding:12px;
+    font-size:0.85rem;
+    color:#dfe6f2;
+    font-weight:700;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .video-frame .caption svg{width:18px;height:18px;color:#ff0000;}
+
+  /* ===== Footer ===== */
+  footer.site{
+    background:var(--navy-900);
+    padding:26px 20px 20px;
+    text-align:center;
+    margin-top:6px;
+  }
+  .socials{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .socials a{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+  }
+  .socials svg{width:18px;height:18px;}
+  .s-linkedin{background:#0a66c2;}
+  .s-instagram{background:radial-gradient(circle at 30% 30%, #fdf497, #fd5949 45%, #d6249f 70%, #285AEB);}
+  .s-whatsapp{background:#25D366;}
+  .s-youtube{background:#ff0000;}
+  footer.site p{
+    margin:0 0 8px;
+    color:#aeb8cc;
+    font-size:0.78rem;
+  }
+  footer.site .legal a{
+    color:var(--gold-400);
+    font-size:0.78rem;
+    margin:0 6px;
+  }
+
+  /* ===== Bottom mobile nav ===== */
+  nav.mobile-nav{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    background:#fff;
+    border-top:1px solid #e7e2d3;
+    display:flex;
+    justify-content:space-around;
+    padding:8px 4px 10px;
+    z-index:50;
+  }
+  nav.mobile-nav a{
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    font-size:0.62rem;
+    color:#556074;
+    font-weight:600;
+  }
+  nav.mobile-nav a.active{color:var(--gold-500);}
+  nav.mobile-nav svg{width:22px;height:22px;}
+
+  /* ===== Booking form ===== */
+  .booking-form{display:flex;flex-direction:column;gap:14px;margin-top:4px;}
+  .booking-form .field{display:flex;flex-direction:column;gap:6px;}
+  .booking-form .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .booking-form label{
+    font-size:0.72rem;
+    color:var(--gold-300);
+    font-weight:700;
+    letter-spacing:0.2px;
+  }
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea{
+    width:100%;
+    background:var(--navy-800);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    color:#fff;
+    font-family:'Inter', system-ui, sans-serif;
+    font-size:0.88rem;
+  }
+  .booking-form input::placeholder,
+  .booking-form textarea::placeholder{color:#7f8ca4;}
+  .booking-form select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dda54a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    background-size:18px;
+    padding-right:38px;
+  }
+  .booking-form select:disabled{color:#7f8ca4;opacity:0.7;}
+  .booking-form select option{color:#0a1526;}
+  .booking-form textarea{resize:vertical;min-height:96px;font-family:inherit;}
+  .booking-form input:focus,
+  .booking-form select:focus,
+  .booking-form textarea:focus{
+    outline:none;
+    border-color:var(--gold-400);
+  }
+  .booking-form .phone-input{
+    display:flex;
+    align-items:stretch;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .booking-form .phone-input .prefix{
+    display:flex;align-items:center;
+    padding:0 14px;
+    background:rgba(221,165,74,0.12);
+    color:var(--gold-400);
+    font-weight:700;
+    font-size:0.88rem;
+    border-right:1px solid var(--line);
+  }
+  .booking-form .phone-input input{
+    border:none;
+    border-radius:0;
+  }
+  .booking-form .price-hint{
+    font-size:0.76rem;
+    color:var(--gold-400);
+    font-weight:600;
+    margin-top:2px;
+    min-height:1em;
+  }
+  .btn-enviar{
+    background:linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    color:var(--navy-900);
+    font-weight:800;
+    font-size:0.92rem;
+    padding:14px 18px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    margin-top:4px;
+  }
+  .btn-enviar:active{transform:translateY(1px);}
+
+  /* ===== Premium pricing catalogue ===== */
+  .cat-card{padding:24px 20px 10px;}
+  .cat-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .cat-head .cat-icon{
+    width:40px;height:40px;flex:0 0 auto;
+    border-radius:10px;
+    background:linear-gradient(135deg, rgba(221,165,74,0.18), rgba(232,121,15,0.1));
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.15rem;
+  }
+  .cat-head h3{
+    margin:0;
+    font-family:'Playfair Display', Georgia, serif;
+    color:#fff;
+    font-size:1.14rem;
+    font-weight:800;
+    line-height:1.25;
+  }
+  .cat-sub{
+    margin:0 0 16px;
+    color:var(--gold-300);
+    font-size:0.78rem;
+    font-style:italic;
+    line-height:1.5;
+  }
+  .service-list{display:flex;flex-direction:column;}
+  .service-item{
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .service-item:first-child{border-top:none;}
+  .service-item-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .service-name{
+    margin:0;
+    color:#fff;
+    font-weight:700;
+    font-size:0.92rem;
+    font-family:'Playfair Display', Georgia, serif;
+    line-height:1.35;
+  }
+  .service-price{
+    flex:0 0 auto;
+    color:var(--navy-900);
+    background:linear-gradient(135deg, var(--gold-400), var(--gold-500));
+    font-weight:800;
+    font-size:0.72rem;
+    padding:5px 11px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .service-desc{
+    margin:0;
+    color:var(--muted);
+    font-size:0.83rem;
+    line-height:1.65;
+    text-align:justify;
+  }
+  .cat-cta{
+    margin:14px 0 18px;
+  }
+  .franquias-card .franquia-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .franquias-card .franquia-item:first-child{border-top:none;}
+  .franquias-card .franquia-logo{
+    width:44px;height:44px;flex:0 0 auto;
+    border-radius:10px;
+    background:linear-gradient(135deg, rgba(221,165,74,0.2), rgba(232,121,15,0.12));
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;
+  }
+  .franquias-card h4{
+    margin:0 0 3px;
+    color:#fff;
+    font-weight:700;
+    font-size:0.92rem;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .franquias-card p{
+    margin:0;
+    color:var(--muted);
+    font-size:0.8rem;
+    line-height:1.5;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <div class="crest"><img src="assets/logo.png" alt="Karlyon Enterprise S.A."></div>
+    <div class="name-block">
+      <h1>KARLYON ENTERPRISE S.A.</h1>
+      <p>ENTERPRISE SOLUTIONS &bull; ACADEMY APPLIED</p>
+    </div>
+  </div>
+  <button class="hamburger" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-backdrop" id="navBackdrop"></div>
+<nav class="nav-menu" id="navMenu">
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="academia.html">Cursos</a></li>
+    <li><a href="servicos.html" style="color:var(--gold-400)">Serviços</a></li>
+    <li><a href="artigos.html">Artigos</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="contactos.html">Contactos</a></li>
+  </ul>
+</nav>
+
+<!-- Hero (full-bleed, not a card) -->
+<section class="hero-band">
+  <div class="hero-inner">
+    <h2><span class="accent">Serviços</span> - Tudo o que oferecemos</h2>
+    <p class="tagline">Soluções completas, num só lugar</p>
+    <p class="desc">Conhece todos os serviços da <b>Karlyon Enterprise S.A.™</b> nas áreas de Académica, Agência, Editora e Consultoria.</p></div>
+</section>
+
+<main>
+  <section class="card cat-card">
+    <div class="cat-head">
+      <div class="cat-icon">💻</div>
+      <h3>Websites & Sistemas Web</h3>
+    </div>
+    <p class="cat-sub">Soluções digitais completas para empresas, clínicas e instituições.</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Website Profissional — Plano Básico</p>
+          <span class="service-price">2.750 MZN</span>
+        </div>
+        <p class="service-desc">Website até 4 páginas, com design responsivo, página inicial, secção sobre nós, serviços e contactos, incluindo optimização SEO básica para maior visibilidade nos motores de busca.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Website Profissional — Plano Básico + Domínio</p>
+          <span class="service-price">5.500 MZN</span>
+        </div>
+        <p class="service-desc">Inclui tudo o que o Plano Básico oferece, acrescido de domínio próprio válido por 12 meses, configuração online completa e sistema de agendamento integrado ao site.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Website Profissional — Plano Premium</p>
+          <span class="service-price">6.500 MZN</span>
+        </div>
+        <p class="service-desc">Website profissional totalmente personalizado para empresas, lojas e instituições. Inclui sistema empresarial ou loja online, domínio por 12 meses, sistema de agendamento, notificações automáticas, gestão de conteúdos, aplicação Android e uma estrutura preparada para crescer com o negócio.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Sistema para Clínicas / Hospitais</p>
+          <span class="service-price">5.500 MZN</span>
+        </div>
+        <p class="service-desc">Website institucional completo, com cadastro de pacientes, sistema de agendamento de consultas e emissão automática de recibos, pensado para o dia a dia de clínicas e hospitais.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Sistema de Cadastro de Alunos</p>
+          <span class="service-price">3.750 MZN</span>
+        </div>
+        <p class="service-desc">Base de dados de alunos com cadastro automático, gestão organizada de registos e pesquisa rápida de informações para instituições de ensino.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Sistema de Emissão de Certificados</p>
+          <span class="service-price">4.750 MZN</span>
+        </div>
+        <p class="service-desc">Emissão automática de certificados, com modelos personalizados à imagem da instituição e organização centralizada dos dados dos alunos.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Sistema de Agendamento — Plano Básico</p>
+          <span class="service-price">750 MZN</span>
+        </div>
+        <p class="service-desc">Marcação de serviços, organização de horários e gestão básica de clientes, ideal para pequenos negócios que precisam de simplicidade.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Sistema de Agendamento — Plano Premium</p>
+          <span class="service-price">2.500 MZN</span>
+        </div>
+        <p class="service-desc">Gestão avançada de clientes, notificações automáticas e controlo completo dos agendamentos, para negócios com maior volume de marcações.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Publicação de Aplicação na Google Play</p>
+          <span class="service-price">1.750 MZN</span>
+        </div>
+        <p class="service-desc">Preparação da aplicação, configuração da página na loja e submissão na Google Play. A taxa cobrada directamente pela Google é paga separadamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card cat-card">
+    <div class="cat-head">
+      <div class="cat-icon">🎓</div>
+      <h3>Trabalhos Académicos</h3>
+    </div>
+    <p class="cat-sub">Acompanhamento rigoroso desde a escolha do tema até à defesa final.</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Projeto Académico</p>
+          <span class="service-price">1.750 MZN</span>
+        </div>
+        <p class="service-desc">Escolha do tema, definição do problema de pesquisa, objectivos, justificativa, metodologia, cronograma, referências bibliográficas e formatação segundo as normas APA (6.ª e 7.ª edição).</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Monografia — Planeamento</p>
+          <span class="service-price">2.000 MZN</span>
+        </div>
+        <p class="service-desc">Escolha e delimitação do tema, definição do problema científico, objectivos e justificativa do estudo.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Monografia — Projeto de Pesquisa</p>
+          <span class="service-price">2.500 MZN</span>
+        </div>
+        <p class="service-desc">Elaboração da metodologia, métodos e técnicas de investigação, cronograma e instrumentos de recolha de dados.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Monografia — Revisão da Literatura</p>
+          <span class="service-price">3.000 MZN</span>
+        </div>
+        <p class="service-desc">Pesquisa bibliográfica aprofundada, fundamentação teórica sólida, citações correctas e organização cuidada das referências.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Monografia — Desenvolvimento</p>
+          <span class="service-price">3.500 MZN</span>
+        </div>
+        <p class="service-desc">Desenvolvimento integral dos capítulos, análise e discussão crítica dos resultados obtidos ao longo da investigação.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Monografia — Finalização</p>
+          <span class="service-price">3.000 MZN</span>
+        </div>
+        <p class="service-desc">Conclusão, recomendações, referências bibliográficas, revisão final, formatação completa e preparação para a defesa pública.</p>
+      </div>
+    </div>
+    <a class="btn-ver cat-cta" href="academia.html">Ver Cursos CPD</a>
+  </section>
+
+  <section class="card cat-card">
+    <div class="cat-head">
+      <div class="cat-icon">🎨</div>
+      <h3>Design Gráfico</h3>
+    </div>
+    <p class="cat-sub">Identidade visual profissional para destacar a tua marca.</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Logótipo Profissional</p>
+          <span class="service-price">250 MZN</span>
+        </div>
+        <p class="service-desc">Criação de identidade visual básica, com conceito profissional alinhado à marca e entrega em ficheiro digital.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Flyer Digital</p>
+          <span class="service-price">250 MZN</span>
+        </div>
+        <p class="service-desc">Design promocional apelativo, pronto para divulgação em redes sociais e campanhas de marketing.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Cartão de Visita</p>
+          <span class="service-price">100 MZN</span>
+        </div>
+        <p class="service-desc">Design profissional em formato digital, pronto para impressão.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card cat-card">
+    <div class="cat-head">
+      <div class="cat-icon">📄</div>
+      <h3>Currículo & Carreira</h3>
+    </div>
+    <p class="cat-sub">Apresenta-te da melhor forma ao mercado de trabalho.</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">CV Profissional + Carta de Apresentação</p>
+          <span class="service-price">250 MZN</span>
+        </div>
+        <p class="service-desc">Elaboração de currículo moderno, carta de apresentação personalizada, organização estratégica das informações, destaque das competências, revisão ortográfica e formatação profissional.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card cat-card">
+    <div class="cat-head">
+      <div class="cat-icon">💼</div>
+      <h3>Negócios & Consultoria</h3>
+    </div>
+    <p class="cat-sub">Planeamento estratégico para transformar ideias em negócios sólidos.</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Plano de Negócio Básico</p>
+          <span class="service-price">750 MZN</span>
+        </div>
+        <p class="service-desc">Descrição do negócio, definição de objectivos, público-alvo, produtos ou serviços e estrutura inicial do projecto.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Plano de Negócio Completo</p>
+          <span class="service-price">1.250 MZN</span>
+        </div>
+        <p class="service-desc">Sumário executivo, pesquisa de mercado, estratégia de marketing, plano operacional, plano financeiro e análise de viabilidade.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Plano de Negócio para PME</p>
+          <span class="service-price">2.750 MZN</span>
+        </div>
+        <p class="service-desc">Diagnóstico completo do negócio, estratégia de crescimento, plano comercial, organização financeira e apresentação profissional para investidores ou bancos.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Consultoria Empresarial</p>
+          <span class="service-price">200 MZN/hora</span>
+        </div>
+        <p class="service-desc">Consultoria especializada em empreendedorismo, marketing digital, planeamento empresarial, transformação digital e soluções tecnológicas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card cat-card">
+    <div class="cat-head">
+      <div class="cat-icon">📈</div>
+      <h3>Marketing Digital</h3>
+    </div>
+    <p class="cat-sub">Presença digital forte, com estratégia e consistência.</p>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-item-head">
+          <p class="service-name">Marketing Digital Inteligente</p>
+          <span class="service-price">Sob consulta</span>
+        </div>
+        <p class="service-desc">Gestão de redes sociais, criação de conteúdos, branding, estratégias digitais, campanhas online e análise de resultados, adaptadas aos objectivos de cada marca.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card franquias-card">
+    <div class="cat-head" style="margin-bottom:16px;">
+      <div class="cat-icon">🏷️</div>
+      <h3>Franquias</h3>
+    </div>
+    <div class="franquia-item">
+      <div class="franquia-logo">🧑‍💼</div>
+      <div>
+        <h4>Alcartel<sup>©</sup> — O Motor de Empregos de Moçambique</h4>
+        <p>Plataforma de bolsa de emprego 100% moçambicana, ligando candidatos a oportunidades de trabalho em todo o país.</p>
+      </div>
+    </div>
+    <div class="franquia-item">
+      <div class="franquia-logo">🎵</div>
+      <div>
+        <h4>Karlyon Enterprise Music<sup>©</sup></h4>
+        <p>Marca dedicada à música e produção artística.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="agendar">
+
+    <h3 style="margin:0 0 8px;font-family:'Playfair Display', Georgia, serif;color:#fff;font-size:1.15rem;">📝 Agendar Serviço</h3>
+    <p style="margin:0 0 16px;color:var(--muted);font-size:0.85rem;line-height:1.5;">Preencha os seus dados e o pedido será enviado directamente para o nosso WhatsApp.</p>
+
+    <form class="booking-form" id="bookingForm">
+      <div class="field">
+        <label for="bkNome">Nome completo</label>
+        <input type="text" id="bkNome" placeholder="Nome completo" required>
+      </div>
+
+      <div class="field">
+        <label for="bkTelefone">Número de telefone</label>
+        <div class="phone-input">
+          <span class="prefix">+258</span>
+          <input type="tel" id="bkTelefone" placeholder="84 123 4567" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="bkCategoria">Categoria do serviço</label>
+        <select id="bkCategoria" required>
+          <option value="" disabled selected>Seleccione a categoria</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="bkSubcategoria">Serviço específico</label>
+        <select id="bkSubcategoria" required disabled>
+          <option value="" selected>Seleccione primeiro a categoria</option>
+        </select>
+        <div class="price-hint" id="bkPrecoHint"></div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="bkData">Data pretendida</label>
+          <input type="date" id="bkData" required>
+        </div>
+        <div class="field">
+          <label for="bkHora">Hora pretendida</label>
+          <input type="time" id="bkHora" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="bkDescricao">Descreva o seu pedido</label>
+        <textarea id="bkDescricao" rows="4" placeholder="Descreva o seu pedido com detalhes..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-enviar">Enviar Pedido</button>
+    </form>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="socials">
+    <a class="s-linkedin" href="https://www.linkedin.com/company/karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.9 3.9 6 2.5 6S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5ZM.24 8.24h4.5V23H.24V8.24ZM8.5 8.24h4.3v2h.06c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.4 3 5.4 6.9V23h-4.5v-6.4c0-1.5 0-3.5-2.1-3.5-2.2 0-2.5 1.7-2.5 3.4V23H8.5V8.24Z"/></svg>
+    </a>
+    <a class="s-instagram" href="https://www.instagram.com/karlyonenterpriseoficial" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+    </a>
+    <a class="s-whatsapp" href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1a13 13 0 0 1-5.9-4.2 6.7 6.7 0 0 1-1.4-3.9c0-1 .5-1.7.7-2 .2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.7.8 1.8.1.2.1.4 0 .6-.1.2-.1.3-.3.5l-.4.5c-.1.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.7 1.6.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.7.8c.2.1.4.2.5.3.1.2.1.9-.1 1.5Z"/></svg>
+    </a>
+    <a class="s-youtube" href="https://www.youtube.com/@sacaitamontgomery" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.2c-.8-.9-1.7-.9-2.1-1C15.9 3.8 12 3.8 12 3.8h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1 1-.6.7-.8 2.2-.8 2.2S2.2 9 2.2 10.7v1.5C2.2 14 2.4 15.7 2.4 15.7s.2 1.5.8 2.2c.8.9 1.9.9 2.3 1 1.7.2 7.1.2 7.1.2s3.9 0 6.7-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.2.8-2.2s.2-1.7.2-3.4v-1.5c0-1.7-.2-3.4-.2-3.4ZM9.9 14.6V8.9l5.8 2.9-5.8 2.8Z"/></svg>
+    </a>
+  </div>
+  <p>© 2026 Karlyon Enterprise S.A. — Todos os direitos reservados.</p>
+  <div class="legal">
+    <a href="privacidade.html">Privacidade</a> &bull;
+    <a href="termos.html">Termos de Uso</a> &bull;
+    <a href="cookies.html">Cookies</a>
+  </div>
+</footer>
+
+<nav class="mobile-nav">
+  <a href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.5V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.5"/></svg>
+    Início
+  </a>
+  <a href="academia.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 5 20 12l-8 7-8-7 8-7Z"/></svg>
+    Cursos
+  </a>
+  <a href="servicos.html" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7" width="17" height="10" rx="2"/></svg>
+    Serviços
+  </a>
+  <a href="sobre.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h10"/></svg>
+    Sobre
+  </a>
+  <a href="contactos.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5c0-1 .8-2 2-2h2l2 5-2 1.4a11 11 0 0 0 5.6 5.6L15 13l5 2v2c0 1.1-1 2-2 2C10.5 19 5 13.5 5 7c0-.2 0-.5-1-2Z"/></svg>
+    Contactos
+  </a>
+</nav>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navBackdrop = document.getElementById('navBackdrop');
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded','false');
+  }
+  menuToggle.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('menu-open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navBackdrop.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', closeMenu));
+
+  /* ===== Booking form: categories, subcategories & WhatsApp submit ===== */
+  const SERVICOS = {
+    "Websites & Sistemas Web": [
+      { nome: "Website Profissional – Plano Básico", preco: "2.750 MZN" },
+      { nome: "Website Profissional – Plano Básico + Domínio", preco: "5.500 MZN" },
+      { nome: "Website Profissional – Plano Premium", preco: "6.500 MZN" },
+      { nome: "Sistema para Clínicas/Hospitais", preco: "5.500 MZN" },
+      { nome: "Sistema de Cadastro de Alunos", preco: "3.750 MZN" },
+      { nome: "Sistema de Emissão de Certificados", preco: "4.750 MZN" },
+      { nome: "Sistema de Agendamento – Plano Básico", preco: "750 MZN" },
+      { nome: "Sistema de Agendamento – Plano Premium", preco: "2.500 MZN" },
+      { nome: "Publicação de Aplicação na Google Play", preco: "1.750 MZN" }
+    ],
+    "Trabalhos Académicos": [
+      { nome: "Projeto Académico", preco: "1.750 MZN" },
+      { nome: "Monografia – Planeamento", preco: "2.000 MZN" },
+      { nome: "Monografia – Projeto de Pesquisa", preco: "2.500 MZN" },
+      { nome: "Monografia – Revisão da Literatura", preco: "3.000 MZN" },
+      { nome: "Monografia – Desenvolvimento", preco: "3.500 MZN" },
+      { nome: "Monografia – Finalização", preco: "3.000 MZN" }
+    ],
+    "Design Gráfico": [
+      { nome: "Logótipo Profissional", preco: "250 MZN" },
+      { nome: "Flyer Digital", preco: "250 MZN" },
+      { nome: "Cartão de Visita", preco: "100 MZN" }
+    ],
+    "Currículo & Carreira": [
+      { nome: "CV Profissional + Carta de Apresentação", preco: "250 MZN" }
+    ],
+    "Negócios & Consultoria": [
+      { nome: "Plano de Negócio Básico", preco: "750 MZN" },
+      { nome: "Plano de Negócio Completo", preco: "1.250 MZN" },
+      { nome: "Plano de Negócio para PME", preco: "2.750 MZN" },
+      { nome: "Consultoria Empresarial", preco: "200 MZN/hora" }
+    ],
+    "Marketing Digital": [
+      { nome: "Marketing Digital Inteligente", preco: "Sob consulta" }
+    ]
+  };
+
+  const WHATSAPP_NUMBER = "258821300088";
+
+  const bkCategoria = document.getElementById('bkCategoria');
+  const bkSubcategoria = document.getElementById('bkSubcategoria');
+  const bkPrecoHint = document.getElementById('bkPrecoHint');
+  const bookingForm = document.getElementById('bookingForm');
+
+  Object.keys(SERVICOS).forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat;
+    opt.textContent = cat;
+    bkCategoria.appendChild(opt);
+  });
+
+  bkCategoria.addEventListener('change', () => {
+    const cat = bkCategoria.value;
+    bkSubcategoria.innerHTML = '';
+    bkPrecoHint.textContent = '';
+
+    if (!cat || !SERVICOS[cat]) {
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Seleccione primeiro a categoria';
+      bkSubcategoria.appendChild(placeholder);
+      bkSubcategoria.disabled = true;
+      return;
+    }
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Seleccione o serviço';
+    bkSubcategoria.appendChild(placeholder);
+
+    SERVICOS[cat].forEach(item => {
+      const opt = document.createElement('option');
+      opt.value = item.nome;
+      opt.dataset.preco = item.preco;
+      opt.textContent = item.nome + ' — ' + item.preco;
+      bkSubcategoria.appendChild(opt);
+    });
+    bkSubcategoria.disabled = false;
+  });
+
+  bkSubcategoria.addEventListener('change', () => {
+    const selected = bkSubcategoria.options[bkSubcategoria.selectedIndex];
+    bkPrecoHint.textContent = selected && selected.dataset.preco ? ('Preço: ' + selected.dataset.preco) : '';
+  });
+
+  bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('bkNome').value.trim();
+    const telefone = document.getElementById('bkTelefone').value.trim();
+    const categoria = bkCategoria.value;
+    const subOpt = bkSubcategoria.options[bkSubcategoria.selectedIndex];
+    const subcategoria = subOpt ? subOpt.value : '';
+    const preco = subOpt && subOpt.dataset.preco ? subOpt.dataset.preco : '';
+    const data = document.getElementById('bkData').value;
+    const hora = document.getElementById('bkHora').value;
+    const descricao = document.getElementById('bkDescricao').value.trim();
+
+    if (!nome || !telefone || !categoria || !subcategoria || !data || !hora) {
+      alert('Por favor preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    const dataFormatada = new Date(data + 'T00:00:00').toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    let mensagem = 'Olá, gostaria de agendar um serviço:\n\n';
+    mensagem += '👤 Nome: ' + nome + '\n';
+    mensagem += '📞 Telefone: +258 ' + telefone + '\n';
+    mensagem += '🗂️ Categoria: ' + categoria + '\n';
+    mensagem += '🛠️ Serviço: ' + subcategoria + (preco ? ' (' + preco + ')' : '') + '\n';
+    mensagem += '📅 Data: ' + dataFormatada + '\n';
+    mensagem += '⏰ Hora: ' + hora + '\n';
+    if (descricao) {
+      mensagem += '📝 Detalhes: ' + descricao + '\n';
+    }
+
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(mensagem);
+    window.open(url, '_blank');
+  });
+</script>
+</body>
+</html>
